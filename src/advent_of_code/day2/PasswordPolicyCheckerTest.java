@@ -21,7 +21,7 @@ class PasswordPolicyCheckerTest {
     }
   }
 
-  static class PasswordPolicyTest {
+  static class FrequencyPolicyTest {
 
     @Test
     void meetsMinimumInBeginning() {
@@ -77,6 +77,33 @@ class PasswordPolicyCheckerTest {
       var policy = new PasswordPolicyChecker.FrequencyPolicy('s', 2, 3);
 
       assertFalse(policy.meetsPolicy("sstss"));
+    }
+  }
+
+  static class PositionalPolicyTest {
+
+    // 1-3 a: abcde is valid: position 1 contains a and position 3 does not.
+    @Test
+    void validFirstAndSecondPositions() {
+      var policy = new PasswordPolicyChecker.PositionalXORPolicy('a', 1, 3);
+
+      assertTrue(policy.meetsPolicy("abcde"));
+    }
+
+    // 1-3 b: cdefg is invalid: neither position 1 nor position 3 contains b.
+    @Test
+    void neitherFirstNorSecondPositionValid() {
+      var policy = new PasswordPolicyChecker.PositionalXORPolicy('b', 1, 3);
+
+      assertFalse(policy.meetsPolicy("abcde"));
+    }
+
+    // 2-9 c: ccccccccc is invalid: both position 2 and position 9 contain c.
+    @Test
+    void bothFirstAndSecondPositionInvalid() {
+      var policy = new PasswordPolicyChecker.PositionalXORPolicy('c', 2, 9);
+
+      assertFalse(policy.meetsPolicy("ccccccccc"));
     }
   }
 }

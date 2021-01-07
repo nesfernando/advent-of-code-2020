@@ -104,4 +104,29 @@ public class PasswordPolicyChecker {
       return this.minFrequency <= frequency && frequency <= this.maxFrequency;
     }
   }
+
+  /*
+   * Each policy actually describes two positions in the password, where 1 means
+   * the first character, 2 means the second character, and so on. (Be careful;
+   * Toboggan Corporate Policies have no concept of "index zero"!) Exactly one of
+   * these positions must contain the given letter.
+   */
+  public static class PositionalXORPolicy {
+
+    private final char letter;
+    private final int firstPosition;
+    private final int secondPosition;
+
+    public PositionalXORPolicy(char letter, int firstPosition, int secondPosition) {
+      this.letter = letter;
+      this.firstPosition = firstPosition;
+      this.secondPosition = secondPosition;
+    }
+
+    public boolean meetsPolicy(String password) {
+      var firstChar = password.charAt(firstPosition - 1);
+      var secondChar = password.charAt(secondPosition - 1);
+      return firstChar == this.letter ^ secondChar == this.letter;
+    }
+  }
 }
