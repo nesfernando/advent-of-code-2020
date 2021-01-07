@@ -6,18 +6,18 @@ import java.util.List;
 import java.util.Set;
 
 /*
- * Specifically, they need you to find the two entries that sum to 2020 and then multiply those two numbers together.
+ * Advent of Code, Day 1
  */
 public class ReportRepair {
 
-  public static void main(String[] args) {
-    int magicNumber = 2020;
+  private static int MAGIC_NUMBER = 2020;
 
-    int twoTermProduct = twoNumbersFormMagicNumber(magicNumber);
-    System.out.println("Two term product: " + twoTermProduct);
+  public static int twoNumbersFormMagicNumber() {
+    return twoNumbersFormMagicNumber(MAGIC_NUMBER);
+  }
 
-    int threeTermProduct = threeNumbersFormMagicNumber(magicNumber);
-    System.out.println("Three term product: " + threeTermProduct);
+  public static int threeNumbersFormMagicNumber() {
+    return threeNumbersFormMagicNumber(MAGIC_NUMBER);
   }
 
   private static int twoNumbersFormMagicNumber(int magicNumber) {
