@@ -1,4 +1,4 @@
-package advent_of_code;
+package advent_of_code.day1;
 
 import static org.junit.jupiter.api.Assertions.*;
 
