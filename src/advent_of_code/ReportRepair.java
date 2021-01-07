@@ -1,6 +1,8 @@
 package advent_of_code;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /*
@@ -12,7 +14,10 @@ public class ReportRepair {
     int magicNumber = 2020;
 
     int twoTermProduct = twoNumbersFormMagicNumber(magicNumber);
-    System.out.println(twoTermProduct);
+    System.out.println("Two term product: " + twoTermProduct);
+
+    int threeTermProduct = threeNumbersFormMagicNumber(magicNumber);
+    System.out.println("Three term product: " + threeTermProduct);
   }
 
   private static int twoNumbersFormMagicNumber(int magicNumber) {
@@ -39,6 +44,35 @@ public class ReportRepair {
     return set;
   }
 
+  private static int threeNumbersFormMagicNumber(int magicNumber) {
+    int[] numbers = getInput();
+    var set = toSet(numbers);
+
+    var pairs = makePairs(numbers);
+
+    for (IntPair pair : pairs) {
+      int candidate = magicNumber - pair.getLeft() - pair.getRight();
+
+      if (set.contains(candidate)) {
+        return candidate * pair.getLeft() * pair.getRight();
+      }
+    }
+
+    return 0;
+  }
+
+  private static List<IntPair> makePairs(int[] numbers) {
+    var listOfPairs = new ArrayList<IntPair>();
+
+    for (int i = 0; i < numbers.length; i++) {
+      for (int j = i + 1; j < numbers.length; j++) {
+        listOfPairs.add(new IntPair(numbers[i], numbers[j]));
+      }
+    }
+
+    return listOfPairs;
+  }
+
   private static int[] getInput() {
     int[] numbers = { 1411, 1802, 1773, 1775, 1442, 1471, 1048, 1403, 1881, 1930, 1710, 1717, 685, 1255, 1451, 1870,
         208, 1725, 1879, 143, 1372, 1726, 1357, 1624, 1378, 1993, 1721, 1712, 1867, 1355, 1743, 1942, 114, 407, 1892,
@@ -53,5 +87,23 @@ public class ReportRepair {
         1687, 1416, 1757, 1470, 1810, 2010, 1553, 1379, 1495, 1565, 1796, 2004, 1899, 2009, 1395, 1388, 1902, 1741 };
 
     return numbers;
+  }
+
+  private static class IntPair {
+    private final int left;
+    private final int right;
+
+    public IntPair(int left, int right) {
+      this.left = left;
+      this.right = right;
+    }
+
+    public int getLeft() {
+      return this.left;
+    }
+
+    public int getRight() {
+      return this.right;
+    }
   }
 }
