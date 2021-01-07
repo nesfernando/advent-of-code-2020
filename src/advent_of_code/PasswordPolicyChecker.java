@@ -13,18 +13,18 @@ public class PasswordPolicyChecker {
   public static void main(String[] args) throws IOException {
     List<String> lines = Files.readAllLines(Paths.get(args[0]));
 
-    int validPasswordsCount = 0;
+    int countValidPasswords = 0;
     for (String line : lines) {
       var parser = new PasswordEntryParser(line);
 
       var policy = new PasswordPolicy(parser.getLetter(), parser.getMinFrequency(), parser.getMaxFrequency());
 
       if (policy.meetsPolicy(parser.getPassword())) {
-        validPasswordsCount++;
+        countValidPasswords++;
       }
     }
 
-    System.out.println("Count of valid passwords: " + validPasswordsCount);
+    System.out.println("Count of valid passwords: " + countValidPasswords);
   }
 
   public static class PasswordEntryParser {
