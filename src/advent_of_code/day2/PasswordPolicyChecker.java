@@ -13,6 +13,15 @@ public class PasswordPolicyChecker {
   public static void main(String[] args) throws IOException {
     List<String> lines = Files.readAllLines(Paths.get(args[0]));
 
+    int countValidPasswords = countFrequencyPolicy(lines);
+    System.out.println("Count of valid passwords: " + countValidPasswords);
+  }
+
+  private static int countPositionalPolicy(List<String> lines) {
+    return 0;
+  }
+
+  private static int countFrequencyPolicy(List<String> lines) {
     int countValidPasswords = 0;
     for (String line : lines) {
       var parser = new PasswordEntryParser(line);
@@ -25,7 +34,7 @@ public class PasswordPolicyChecker {
       }
     }
 
-    System.out.println("Count of valid passwords: " + countValidPasswords);
+    return countValidPasswords;
   }
 
   public static class PasswordEntryParser {
