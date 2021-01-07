@@ -1,9 +1,31 @@
 package advent_of_code;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+
 /*
  * Advent of Code, Day 2
  */
 public class PasswordPolicyChecker {
+
+  public static void main(String[] args) throws IOException {
+    List<String> lines = Files.readAllLines(Paths.get(args[0]));
+
+    int validPasswordsCount = 0;
+    for (String line : lines) {
+      var parser = new PasswordEntryParser(line);
+
+      var policy = new PasswordPolicy(parser.getLetter(), parser.getMinFrequency(), parser.getMaxFrequency());
+
+      if (policy.meetsPolicy(parser.getPassword())) {
+        validPasswordsCount++;
+      }
+    }
+
+    System.out.println("Count of valid passwords: " + validPasswordsCount);
+  }
 
   public static class PasswordEntryParser {
 
