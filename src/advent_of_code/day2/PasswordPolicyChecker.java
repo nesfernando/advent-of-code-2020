@@ -17,7 +17,8 @@ public class PasswordPolicyChecker {
     for (String line : lines) {
       var parser = new PasswordEntryParser(line);
 
-      var policy = new PasswordPolicy(parser.getLetter(), parser.getMinFrequency(), parser.getMaxFrequency());
+      var policy = new FrequencyPolicy(parser.getLetter(), parser.getFirstNumericalParam(),
+          parser.getSecondNumericalParam());
 
       if (policy.meetsPolicy(parser.getPassword())) {
         countValidPasswords++;
@@ -30,8 +31,8 @@ public class PasswordPolicyChecker {
   public static class PasswordEntryParser {
 
     private char letter;
-    private int minFrequency;
-    private int maxFrequency;
+    private int firstNumericalParam;
+    private int secondNumericalParam;
     private String password;
 
     public PasswordEntryParser(String entry) {
@@ -48,20 +49,20 @@ public class PasswordPolicyChecker {
 
       String[] hyphenTerms = spaceTerms[0].split("-");
 
-      this.minFrequency = Integer.parseInt(hyphenTerms[0]);
-      this.maxFrequency = Integer.parseInt(hyphenTerms[1]);
+      this.firstNumericalParam = Integer.parseInt(hyphenTerms[0]);
+      this.secondNumericalParam = Integer.parseInt(hyphenTerms[1]);
     }
 
     public char getLetter() {
       return this.letter;
     }
 
-    public int getMinFrequency() {
-      return this.minFrequency;
+    public int getFirstNumericalParam() {
+      return this.firstNumericalParam;
     }
 
-    public int getMaxFrequency() {
-      return this.maxFrequency;
+    public int getSecondNumericalParam() {
+      return this.secondNumericalParam;
     }
 
     public String getPassword() {
@@ -69,13 +70,13 @@ public class PasswordPolicyChecker {
     }
   }
 
-  public static class PasswordPolicy {
+  public static class FrequencyPolicy {
 
     private final char letter;
     private final int minFrequency;
     private final int maxFrequency;
 
-    public PasswordPolicy(char letter, int minFrequency, int maxFrequency) {
+    public FrequencyPolicy(char letter, int minFrequency, int maxFrequency) {
       this.letter = letter;
       this.minFrequency = minFrequency;
       this.maxFrequency = maxFrequency;
