@@ -9,31 +9,36 @@ import java.util.Set;
 public class ReportRepair {
 
   public static void main(String[] args) {
-    int[] numbers = getInput();
-    var set = asSet(numbers);
-    
     int magicNumber = 2020;
-    
+
+    int twoTermProduct = twoNumbersFormMagicNumber(magicNumber);
+    System.out.println(twoTermProduct);
+  }
+
+  private static int twoNumbersFormMagicNumber(int magicNumber) {
+    int[] numbers = getInput();
+    var set = toSet(numbers);
+
     for (int num : set) {
       int candidate = magicNumber - num;
-      
+
       if (set.contains(candidate)) {
-        int result = num * candidate;
-        System.out.println(result);
-        break;
-      }     
+        return num * candidate;
+      }
     }
+
+    return 0;
   }
-  
-  private static Set<Integer> asSet(int[] integerArray) {
+
+  private static Set<Integer> toSet(int[] numbers) {
     var set = new HashSet<Integer>();
-    for (int i : integerArray) {
+    for (int i : numbers) {
       set.add(i);
     }
-    
+
     return set;
   }
-  
+
   private static int[] getInput() {
     int[] numbers = { 1411, 1802, 1773, 1775, 1442, 1471, 1048, 1403, 1881, 1930, 1710, 1717, 685, 1255, 1451, 1870,
         208, 1725, 1879, 143, 1372, 1726, 1357, 1624, 1378, 1993, 1721, 1712, 1867, 1355, 1743, 1942, 114, 407, 1892,
@@ -46,7 +51,7 @@ public class ReportRepair {
         1968, 1969, 1437, 1692, 1955, 1964, 1821, 1805, 1999, 1614, 1754, 1888, 1832, 1623, 1723, 1678, 2008, 1819,
         1595, 1972, 1229, 1703, 1762, 1818, 1062, 1599, 1996, 2000, 1960, 1927, 1407, 1414, 1923, 1685, 1998, 1497,
         1687, 1416, 1757, 1470, 1810, 2010, 1553, 1379, 1495, 1565, 1796, 2004, 1899, 2009, 1395, 1388, 1902, 1741 };
-    
+
     return numbers;
   }
 }
