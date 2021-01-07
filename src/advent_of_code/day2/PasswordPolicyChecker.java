@@ -1,4 +1,4 @@
-package advent_of_code;
+package advent_of_code.day2;
 
 import java.io.IOException;
 import java.nio.file.Files;
