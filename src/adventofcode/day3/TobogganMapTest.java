@@ -50,4 +50,19 @@ class TobogganMapTest {
     map.moveDown();
     assertTrue(map.isTree());
   }
+
+  @Test
+  void moveCanMoveDownOnStart() {
+    var map = getMapInstance();
+
+    assertTrue(map.canMoveDown());
+  }
+
+  @Test
+  void moveDownOnceCanStillMoveDown() {
+    var map = getMapInstance();
+
+    map.moveDown();
+    assertFalse(map.canMoveDown());
+  }
 }

@@ -11,6 +11,10 @@ public class TobogganMap {
     this.rows = rows;
   }
 
+  public boolean canMoveDown() {
+    return this.currentRow < this.rows.size() - 1;
+  }
+
   public void moveDown() {
     int rowPosition = this.rows.get(this.currentRow).getPosition();
     this.currentRow++;

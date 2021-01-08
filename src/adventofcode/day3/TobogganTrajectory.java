@@ -14,7 +14,7 @@ public class TobogganTrajectory {
 
     int numTrees = 0;
 
-    for (int i = 0; i < lines.size() - 1; i++) {
+    while (map.canMoveDown()) {
       map.moveRight(3);
       map.moveDown();
 
