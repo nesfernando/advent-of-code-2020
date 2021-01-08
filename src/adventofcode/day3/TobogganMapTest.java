@@ -12,6 +12,7 @@ class TobogganMapTest {
     var rows = new ArrayList<TobogganMapRow>();
     rows.add(new TobogganMapRow("......#...........#...#........"));
     rows.add(new TobogganMapRow(".#.....#...##.......#.....##..."));
+    rows.add(new TobogganMapRow("......#.#....#................."));
 
     return new TobogganMap(rows);
   }
@@ -52,7 +53,7 @@ class TobogganMapTest {
   }
 
   @Test
-  void moveCanMoveDownOnStart() {
+  void canMoveDownOnStart() {
     var map = getMapInstance();
 
     assertTrue(map.canMoveDown());
@@ -63,6 +64,14 @@ class TobogganMapTest {
     var map = getMapInstance();
 
     map.moveDown();
+    assertTrue(map.canMoveDown());
+  }
+
+  @Test
+  void moveDownTwoCannotMoveDownAfter() {
+    var map = getMapInstance();
+
+    map.moveDown(2);
     assertFalse(map.canMoveDown());
   }
 }

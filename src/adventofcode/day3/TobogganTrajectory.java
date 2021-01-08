@@ -10,20 +10,24 @@ public class TobogganTrajectory {
   public static void main(String[] args) throws IOException {
     List<String> lines = Files.readAllLines(Paths.get(args[0]));
 
+    System.out.println("Number of trees encountered: " + runTrajectory(lines, 3, 1));
+  }
+
+  private static int runTrajectory(List<String> lines, int rightMoves, int downMoves) {
     var map = createMap(lines);
 
     int numTrees = 0;
 
     while (map.canMoveDown()) {
-      map.moveRight(3);
-      map.moveDown();
+      map.moveRight(rightMoves);
+      map.moveDown(downMoves);
 
       if (map.isTree()) {
         numTrees++;
       }
     }
 
-    System.out.println("Number of trees encountered: " + numTrees);
+    return numTrees;
   }
 
   private static TobogganMap createMap(List<String> lines) {
