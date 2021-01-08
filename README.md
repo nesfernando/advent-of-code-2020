@@ -1,3 +1,3 @@
-# advent_of_code
+# advent-of-code
 
 Thanks, Bill, for pointing me to https://adventofcode.com/2020
