@@ -10,7 +10,11 @@ public class TobogganTrajectory {
   public static void main(String[] args) throws IOException {
     List<String> lines = Files.readAllLines(Paths.get(args[0]));
 
+    System.out.println("Number of trees encountered: " + runTrajectory(lines, 1, 1));
     System.out.println("Number of trees encountered: " + runTrajectory(lines, 3, 1));
+    System.out.println("Number of trees encountered: " + runTrajectory(lines, 5, 1));
+    System.out.println("Number of trees encountered: " + runTrajectory(lines, 7, 1));
+    System.out.println("Number of trees encountered: " + runTrajectory(lines, 1, 2));
   }
 
   private static int runTrajectory(List<String> lines, int rightMoves, int downMoves) {
