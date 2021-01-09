@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
-class PassportDataValidatorTest {
+class PassportFieldCountValidatorTest {
 
   @Test
   void completePassportDataIsValid() {
