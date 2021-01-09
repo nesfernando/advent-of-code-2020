@@ -2,9 +2,9 @@ package adventofcode.day4;
 
 import java.util.Map;
 
-public class PassportDataValidator {
+public class PassportFieldCountValidator {
 
-  public static boolean isValid(Map<String, String> passportData) {
+  public static boolean validate(Map<String, String> passportData) {
 
     return hasEightFields(passportData) || hasSevenFieldsOnlyCIDMissing(passportData);
   }

@@ -14,7 +14,7 @@ class PassportDataValidatorTest {
         "ecl", "gry", "pid", "860033327", "eyr", "2020", "hcl", "#fffffd", "byr", "1937", "iyr", "2017", "cid", "147",
         "hgt", "183cm");
 
-    assertTrue(PassportDataValidator.isValid(data));
+    assertTrue(PassportFieldCountValidator.validate(data));
   }
 
   @Test
@@ -23,6 +23,6 @@ class PassportDataValidatorTest {
         "ecl", "gry", "pid", "860033327", "eyr", "2020", "hcl", "#fffffd", "byr", "1937", "iyr", "2017", "hgt",
         "183cm");
 
-    assertTrue(PassportDataValidator.isValid(data));
+    assertTrue(PassportFieldCountValidator.validate(data));
   }
 }

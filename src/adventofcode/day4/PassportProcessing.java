@@ -13,14 +13,19 @@ public class PassportProcessing {
 
     var dataBatch = BatchDataParser.parse(lines);
 
+    // part 1
+    System.out.println("Number of valid passports: " + getCountOfValidPassportssByMissingFields(dataBatch));
+
+  }
+
+  private static int getCountOfValidPassportssByMissingFields(List<Map<String, String>> dataBatch) {
     int countValidPassports = 0;
 
     for (Map<String, String> passportData : dataBatch) {
-      if (PassportDataValidator.isValid(passportData)) {
+      if (PassportFieldCountValidator.validate(passportData)) {
         countValidPassports++;
       }
     }
-
-    System.out.println("Number of valid passports: " + countValidPassports);
+    return countValidPassports;
   }
 }
