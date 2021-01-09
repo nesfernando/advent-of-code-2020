@@ -1,3 +1,3 @@
 # advent-of-code
 
-Thanks, Bill, for pointing me to https://adventofcode.com/2020
+Thanks, Bill, for pointing me to https://adventofcode.com/
