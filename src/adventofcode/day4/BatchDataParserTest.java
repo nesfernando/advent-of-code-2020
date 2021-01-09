@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-class BatchPassportDataTest {
+class BatchDataParserTest {
 
   private static List<String> getDataLines() {
     return Arrays.asList(
@@ -21,7 +21,7 @@ class BatchPassportDataTest {
   void parsedBatchDataHasFourEntries() {
     var lines = getDataLines();
 
-    var batchData = BatchPassportData.parse(lines);
+    var batchData = BatchDataParser.parse(lines);
 
     assertEquals(4, batchData.size());
   }

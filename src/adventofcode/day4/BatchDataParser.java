@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class BatchPassportData {
+public class BatchDataParser {
 
   public static List<Map<String, String>> parse(List<String> lines) {
 

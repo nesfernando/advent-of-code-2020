@@ -11,7 +11,7 @@ public class PassportProcessing {
   public static void main(String[] args) throws IOException {
     List<String> lines = Files.readAllLines(Paths.get(args[0]));
 
-    var dataBatch = BatchPassportData.parse(lines);
+    var dataBatch = BatchDataParser.parse(lines);
 
     int countValidPassports = 0;
 
