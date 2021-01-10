@@ -96,4 +96,25 @@ class PassportFieldDataValidatorTest {
 
     assertFalse(PassportFieldDataValidator.validate(passportData));
   }
+
+  @Test
+  void hairColorLessThanSixCharactersInvalid() {
+    var passportData = getCompletePassportDataWith("hcl", "#623a2");
+
+    assertFalse(PassportFieldDataValidator.validate(passportData));
+  }
+
+  @Test
+  void hairColorGreaterThanSixCharactersInvalid() {
+    var passportData = getCompletePassportDataWith("hcl", "#623a2f0");
+
+    assertFalse(PassportFieldDataValidator.validate(passportData));
+  }
+
+  @Test
+  void unknownHairColorInvalid() {
+    var passportData = getCompletePassportDataWith("ecl", "pnk");
+
+    assertFalse(PassportFieldDataValidator.validate(passportData));
+  }
 }

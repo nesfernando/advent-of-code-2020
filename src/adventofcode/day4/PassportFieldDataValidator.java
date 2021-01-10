@@ -1,6 +1,7 @@
 package adventofcode.day4;
 
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
@@ -10,7 +11,9 @@ public class PassportFieldDataValidator {
     return validateField(passportData, "byr", PassportFieldDataValidator::isBirthYearValid)
         && validateField(passportData, "iyr", PassportFieldDataValidator::isIssueYearValid)
         && validateField(passportData, "eyr", PassportFieldDataValidator::isExpirationYearValid)
-        && validateField(passportData, "hgt", PassportFieldDataValidator::isHeightValid);
+        && validateField(passportData, "hgt", PassportFieldDataValidator::isHeightValid)
+        && validateField(passportData, "hcl", PassportFieldDataValidator::isHairColorValid)
+        && validateField(passportData, "ecl", PassportFieldDataValidator::isEyeColorValid);
   }
 
   private static boolean validateField(Map<String, String> passportData, String key, Predicate<String> predicate) {
@@ -57,5 +60,13 @@ public class PassportFieldDataValidator {
 
     int heightInches = Integer.parseInt(imperialMatcher.group(1));
     return 59 <= heightInches && heightInches <= 76;
+  }
+
+  private static boolean isHairColorValid(String value) {
+    return value.matches("#[a-f0-9]{6}");
+  }
+
+  private static boolean isEyeColorValid(String value) {
+    return Set.of("amb", "blu", "brn", "gry", "grn", "hzl", "oth").contains(value);
   }
 }
