@@ -35,22 +35,27 @@ public class PassportFieldDataValidator {
   }
 
   private static boolean isHeightValid(String value) {
+    return isMetricHeightValid(value) || isImperialHeightValid(value);
 
-    var metricPattern = Pattern.compile("(\\d{3})(cm)");
-    var metricMatcher = metricPattern.matcher(value);
-    if (metricMatcher.matches()) {
-      int heightCm = Integer.parseInt(metricMatcher.group(1));
-      return 150 <= heightCm && heightCm <= 193;
-    }
-
-    var imperialPattern = Pattern.compile("(\\d{2})(in)");
-    var imperialMatcher = imperialPattern.matcher(value);
-    if (imperialMatcher.matches()) {
-      int heightInches = Integer.parseInt(imperialMatcher.group(1));
-      return 59 <= heightInches && heightInches <= 76;
-    }
-
-    return false;
   }
 
+  private static boolean isMetricHeightValid(String value) {
+    var metricPattern = Pattern.compile("(\\d{3})(cm)");
+    var metricMatcher = metricPattern.matcher(value);
+    if (!metricMatcher.matches())
+      return false;
+
+    int heightCm = Integer.parseInt(metricMatcher.group(1));
+    return 150 <= heightCm && heightCm <= 193;
+  }
+
+  private static boolean isImperialHeightValid(String value) {
+    var imperialPattern = Pattern.compile("(\\d{2})(in)");
+    var imperialMatcher = imperialPattern.matcher(value);
+    if (!imperialMatcher.matches())
+      return false;
+
+    int heightInches = Integer.parseInt(imperialMatcher.group(1));
+    return 59 <= heightInches && heightInches <= 76;
+  }
 }
