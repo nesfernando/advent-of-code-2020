@@ -117,4 +117,11 @@ class PassportFieldDataValidatorTest {
 
     assertFalse(PassportFieldDataValidator.validate(passportData));
   }
+
+  @Test
+  void passportIDLessThanNineDigitsInvalid() {
+    var passportData = getCompletePassportDataWith("pid", "08749970");
+
+    assertFalse(PassportFieldDataValidator.validate(passportData));
+  }
 }

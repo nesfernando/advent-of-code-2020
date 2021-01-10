@@ -13,7 +13,8 @@ public class PassportFieldDataValidator {
         && validateField(passportData, "eyr", PassportFieldDataValidator::isExpirationYearValid)
         && validateField(passportData, "hgt", PassportFieldDataValidator::isHeightValid)
         && validateField(passportData, "hcl", PassportFieldDataValidator::isHairColorValid)
-        && validateField(passportData, "ecl", PassportFieldDataValidator::isEyeColorValid);
+        && validateField(passportData, "ecl", PassportFieldDataValidator::isEyeColorValid)
+        && validateField(passportData, "pid", PassportFieldDataValidator::isPassportIDValid);
   }
 
   private static boolean validateField(Map<String, String> passportData, String key, Predicate<String> predicate) {
@@ -68,5 +69,9 @@ public class PassportFieldDataValidator {
 
   private static boolean isEyeColorValid(String value) {
     return Set.of("amb", "blu", "brn", "gry", "grn", "hzl", "oth").contains(value);
+  }
+
+  private static boolean isPassportIDValid(String value) {
+    return value.matches("\\d{9}");
   }
 }
