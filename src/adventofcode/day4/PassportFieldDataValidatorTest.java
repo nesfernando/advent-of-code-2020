@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import org.junit.jupiter.api.Test;
 
 class PassportFieldDataValidatorTest {
@@ -13,6 +12,12 @@ class PassportFieldDataValidatorTest {
     return new HashMap<>(Map.ofEntries(
         Map.entry("pid", "087499704"), Map.entry("hgt", "74in"), Map.entry("ecl", "grn"), Map.entry("iyr", "2012"),
         Map.entry("eyr", "2030"), Map.entry("byr", "1980"), Map.entry("hcl", "#623a2f")));
+  }
+
+  private static Map<String, String> getCompletePassportDataWith(String key, String value) {
+    var passportData = getValidPassportData();
+    passportData.put(key, value);
+    return passportData;
   }
 
   @Test
@@ -66,6 +71,20 @@ class PassportFieldDataValidatorTest {
   void expirationYearAfter2030Invalid() {
     var passportData = getValidPassportData();
     passportData.put("eyr", "2031");
+
+    assertFalse(PassportFieldDataValidator.validate(passportData));
+  }
+
+  @Test
+  void metricHeightLessThan150cmInvalid() {
+    var passportData = getCompletePassportDataWith("hgt", "149cm");
+
+    assertFalse(PassportFieldDataValidator.validate(passportData));
+  }
+
+  @Test
+  void metricHeightGreatherThan193cmInvalid() {
+    var passportData = getCompletePassportDataWith("hgt", "194cm");
 
     assertFalse(PassportFieldDataValidator.validate(passportData));
   }
