@@ -26,4 +26,25 @@ class SeatFinderTest {
 
     assertEquals(102, rowNumber);
   }
+
+  @Test
+  void findColumn5() {
+    int columnNumber = SeatFinder.findColumnNumber("RLR");
+
+    assertEquals(5, columnNumber);
+  }
+
+  @Test
+  void findColumn7() {
+    int columnNumber = SeatFinder.findColumnNumber("RRR");
+
+    assertEquals(7, columnNumber);
+  }
+
+  @Test
+  void findColumn4() {
+    int columnNumber = SeatFinder.findColumnNumber("RLL");
+
+    assertEquals(4, columnNumber);
+  }
 }
