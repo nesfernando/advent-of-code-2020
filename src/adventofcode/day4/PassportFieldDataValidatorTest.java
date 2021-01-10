@@ -82,4 +82,18 @@ class PassportFieldDataValidatorTest {
 
     assertFalse(PassportFieldDataValidator.validate(passportData));
   }
+
+  @Test
+  void imperialHeightLessThan59InchesInvalid() {
+    var passportData = getCompletePassportDataWith("hgt", "58in");
+
+    assertFalse(PassportFieldDataValidator.validate(passportData));
+  }
+
+  @Test
+  void imperialHeightGreatherThan76InchesInvalid() {
+    var passportData = getCompletePassportDataWith("hgt", "77in");
+
+    assertFalse(PassportFieldDataValidator.validate(passportData));
+  }
 }
