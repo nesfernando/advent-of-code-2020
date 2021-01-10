@@ -29,48 +29,42 @@ class PassportFieldDataValidatorTest {
 
   @Test
   void birthYearBefore1920Invalid() {
-    var passportData = getValidPassportData();
-    passportData.put("byr", "1919");
+    var passportData = getCompletePassportDataWith("byr", "1919");
 
     assertFalse(PassportFieldDataValidator.validate(passportData));
   }
 
   @Test
   void birthYearAfter2002Invalid() {
-    var passportData = getValidPassportData();
-    passportData.put("byr", "2003");
+    var passportData = getCompletePassportDataWith("byr", "2003");
 
     assertFalse(PassportFieldDataValidator.validate(passportData));
   }
 
   @Test
   void issueYearBefore2010Invalid() {
-    var passportData = getValidPassportData();
-    passportData.put("iyr", "2009");
+    var passportData = getCompletePassportDataWith("iyr", "2009");
 
     assertFalse(PassportFieldDataValidator.validate(passportData));
   }
 
   @Test
   void issueYearAfter2020Invalid() {
-    var passportData = getValidPassportData();
-    passportData.put("iyr", "2021");
+    var passportData = getCompletePassportDataWith("iyr", "2021");
 
     assertFalse(PassportFieldDataValidator.validate(passportData));
   }
 
   @Test
   void expirationYearBefore2020Invalid() {
-    var passportData = getValidPassportData();
-    passportData.put("eyr", "2019");
+    var passportData = getCompletePassportDataWith("eyr", "2019");
 
     assertFalse(PassportFieldDataValidator.validate(passportData));
   }
 
   @Test
   void expirationYearAfter2030Invalid() {
-    var passportData = getValidPassportData();
-    passportData.put("eyr", "2031");
+    var passportData = getCompletePassportDataWith("eyr", "2031");
 
     assertFalse(PassportFieldDataValidator.validate(passportData));
   }
