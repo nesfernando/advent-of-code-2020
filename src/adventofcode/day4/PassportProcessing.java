@@ -38,7 +38,7 @@ public class PassportProcessing {
     int countValidPassports = 0;
 
     for (Map<String, String> passportData : dataBatch) {
-      if (PassportFieldCountValidator.validate(passportData) && PassportFieldDataValidator.validate(passportData)) {
+      if (PassportFieldDataValidator.validate(passportData)) {
         countValidPassports++;
       }
     }
