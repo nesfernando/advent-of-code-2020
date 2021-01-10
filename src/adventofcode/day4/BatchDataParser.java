@@ -16,7 +16,7 @@ public class BatchDataParser {
       if (!line.isEmpty()) {
         dataBuffer.add(line);
       }
-      else if (line.isEmpty() && !dataBuffer.isEmpty()) {
+      else if (!dataBuffer.isEmpty()) {
         var map = PassportDataParser.parse(dataBuffer);
         batch.add(map);
         dataBuffer.clear();
