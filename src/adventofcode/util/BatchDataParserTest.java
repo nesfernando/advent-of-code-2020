@@ -1,4 +1,4 @@
-package adventofcode.day4;
+package adventofcode.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -18,10 +18,10 @@ class BatchDataParserTest {
   }
 
   @Test
-  void parsedBatchDataHasFourEntries() {
+  void parsedBatchDataHasFourGroups() {
     var lines = getDataLines();
 
-    var batchData = BatchDataParser.parse(lines);
+    var batchData = BatchDataParser.parseGroups(lines);
 
     assertEquals(4, batchData.size());
   }
