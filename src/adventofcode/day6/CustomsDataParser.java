@@ -17,4 +17,20 @@ public class CustomsDataParser {
 
     return set;
   }
+
+  public static Set<Character> makeIntersection(List<String> lines) {
+    var intersection = makeUnion(lines);
+
+    for (var line : lines) {
+      var set = new HashSet<Character>();
+
+      for (var c : line.toCharArray()) {
+        set.add(c);
+      }
+
+      intersection.retainAll(set);
+    }
+
+    return intersection;
+  }
 }

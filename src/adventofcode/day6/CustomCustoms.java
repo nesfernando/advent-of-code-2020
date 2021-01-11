@@ -14,7 +14,11 @@ public class CustomCustoms {
     var dataGroups = BatchDataParser.parseGroups(lines);
 
     System.out.println(
-        "Sum of set sizes of group questions: "
+        "Sum of number of questions to which anyone answered \"yes\": "
             + dataGroups.stream().mapToInt(line -> CustomsDataParser.makeUnion(line).size()).sum());
+
+    System.out.println(
+        "Sum of number of questions to which everyone answered \"yes\": "
+            + dataGroups.stream().mapToInt(line -> CustomsDataParser.makeIntersection(line).size()).sum());
   }
 }
