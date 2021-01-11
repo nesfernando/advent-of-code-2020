@@ -43,16 +43,16 @@ public class BagRuleGraph {
   }
 
   public void addRule(BagRuleParser rule) {
+    var containedBy = getNode(rule.getColor());
+    nodes.put(rule.getColor(), containedBy);
+
     for (var content : rule.getContents()) {
       var color = parseColorFromContent(content);
 
       var node = getNode(color);
-      var containedBy = getNode(rule.getColor());
 
       node.addNeighbor(containedBy);
-
       nodes.put(color, node);
-      nodes.put(rule.getColor(), containedBy);
     }
   }
 
