@@ -2,6 +2,7 @@ package adventofcode.day7;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
@@ -16,6 +17,12 @@ public class BagRuleGraph {
     public Node(String color) {
       this.color = color;
       this.neighbors = new HashSet<Node>();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      var other = (Node) obj;
+      return this.color == other.color;
     }
 
     public String getColor() {
@@ -54,6 +61,32 @@ public class BagRuleGraph {
     var colors = new HashSet<String>();
     node.getNeighbors().forEach(n -> colors.add(n.getColor()));
     return colors;
+  }
+
+  // BFS
+  public Set<String> getRecursivelyContainingBagColors(String bagColor) {
+
+    var containingNodeColors = new HashSet<String>();
+    var visitedNodes = new HashSet<Node>();
+    var queue = new LinkedList<Node>();
+    var node = getNode(bagColor);
+
+    visitedNodes.add(node);
+    queue.add(node);
+
+    while (!queue.isEmpty()) {
+      var current = queue.poll();
+
+      for (var neighbor : current.getNeighbors()) {
+        containingNodeColors.add(neighbor.getColor());
+        if (!visitedNodes.contains(neighbor)) {
+          visitedNodes.add(neighbor);
+          queue.add(neighbor);
+        }
+      }
+    }
+
+    return containingNodeColors;
   }
 
   private Node getNode(String color) {
