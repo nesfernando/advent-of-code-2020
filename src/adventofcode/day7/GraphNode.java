@@ -17,12 +17,6 @@ public class GraphNode {
     this.count = count;
   }
 
-  @Override
-  public boolean equals(Object obj) {
-    var other = (GraphNode) obj;
-    return this.color == other.color;
-  }
-
   public String getColor() {
     return this.color;
   }
