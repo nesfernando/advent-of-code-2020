@@ -6,40 +6,14 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
+import adventofcode.util.GraphNode;
+
 public class BagRuleGraph {
 
-  private Map<String, Node> nodes;
-
-  private static class Node {
-    private String color;
-    private Set<Node> neighbors;
-
-    public Node(String color) {
-      this.color = color;
-      this.neighbors = new HashSet<Node>();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-      var other = (Node) obj;
-      return this.color == other.color;
-    }
-
-    public String getColor() {
-      return this.color;
-    }
-
-    public void addNeighbor(Node node) {
-      this.neighbors.add(node);
-    }
-
-    public Set<Node> getNeighbors() {
-      return this.neighbors;
-    }
-  }
+  private Map<String, GraphNode> nodes;
 
   public BagRuleGraph() {
-    this.nodes = new HashMap<String, Node>();
+    this.nodes = new HashMap<String, GraphNode>();
   }
 
   public void addRule(BagRuleParser rule) {
@@ -67,8 +41,8 @@ public class BagRuleGraph {
   public Set<String> getRecursivelyContainingBagColors(String bagColor) {
 
     var containingNodeColors = new HashSet<String>();
-    var visitedNodes = new HashSet<Node>();
-    var queue = new LinkedList<Node>();
+    var visitedNodes = new HashSet<GraphNode>();
+    var queue = new LinkedList<GraphNode>();
     var node = getNode(bagColor);
 
     visitedNodes.add(node);
@@ -89,8 +63,8 @@ public class BagRuleGraph {
     return containingNodeColors;
   }
 
-  private Node getNode(String color) {
-    return nodes.getOrDefault(color, new Node(color));
+  private GraphNode getNode(String color) {
+    return nodes.getOrDefault(color, new GraphNode(color));
   }
 
   // "2 muted yellow"
