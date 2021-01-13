@@ -34,6 +34,7 @@ public class BagRuleEvaluatorForAllBagContents {
   public int getTotalRecursiveBagCount(String bagColor) {
     var node = getNode(bagColor);
 
+    node.setCount(1); // override the rule for counting
     return getCount(node) - 1; // don't count myself
   }
 
