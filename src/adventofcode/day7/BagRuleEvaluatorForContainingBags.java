@@ -6,11 +6,11 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
-public class BagRuleGraph {
+public class BagRuleEvaluatorForContainingBags {
 
   private Map<String, GraphNode> nodes;
 
-  public BagRuleGraph() {
+  public BagRuleEvaluatorForContainingBags() {
     this.nodes = new HashMap<String, GraphNode>();
   }
 

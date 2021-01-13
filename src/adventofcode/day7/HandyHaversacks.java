@@ -11,7 +11,7 @@ public class HandyHaversacks {
 
     var terminalRulesRemoved = lines.stream().filter(s -> !s.contains("no other"));
 
-    var graph = new BagRuleGraph();
+    var graph = new BagRuleEvaluatorForContainingBags();
 
     terminalRulesRemoved.forEach(line -> graph.addRule(new BagRuleParser(line)));
 

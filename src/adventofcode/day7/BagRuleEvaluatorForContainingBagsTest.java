@@ -4,13 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-class BagRuleGraphTest {
+public class BagRuleEvaluatorForContainingBagsTest {
 
   @Test
   void singeRule() {
     var rule = new BagRuleParser("light red bags contain 1 bright white bag, 2 muted yellow bags.");
 
-    var graph = new BagRuleGraph();
+    var graph = new BagRuleEvaluatorForContainingBags();
     graph.addRule(rule);
 
     assertTrue(graph.getContainingBagColors("bright white").contains("light red"));
@@ -22,7 +22,7 @@ class BagRuleGraphTest {
     var rule1 = new BagRuleParser("light red bags contain 1 bright white bag.");
     var rule2 = new BagRuleParser("muted yellow bags contain 1 bright white bag.");
 
-    var graph = new BagRuleGraph();
+    var graph = new BagRuleEvaluatorForContainingBags();
     graph.addRule(rule1);
     graph.addRule(rule2);
 
@@ -41,7 +41,7 @@ class BagRuleGraphTest {
     var rule6 = new BagRuleParser("dark olive bags contain 3 faded blue bags, 4 dotted black bags.");
     var rule7 = new BagRuleParser("vibrant plum bags contain 5 faded blue bags, 6 dotted black bags.");
 
-    var graph = new BagRuleGraph();
+    var graph = new BagRuleEvaluatorForContainingBags();
     graph.addRule(rule1);
     graph.addRule(rule2);
     graph.addRule(rule3);
