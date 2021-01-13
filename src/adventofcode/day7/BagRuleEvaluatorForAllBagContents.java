@@ -44,7 +44,6 @@ public class BagRuleEvaluatorForAllBagContents {
       count += getCount(neighbor, neighbor.getCount());
     }
 
-    int totalCount = countOfThisBag * count + countOfThisBag;
-    return totalCount;
+    return countOfThisBag * count + countOfThisBag;
   }
 }
