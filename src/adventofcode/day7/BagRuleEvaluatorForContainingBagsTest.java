@@ -10,11 +10,11 @@ public class BagRuleEvaluatorForContainingBagsTest {
   void singeRule() {
     var rule = new BagRuleParser("light red bags contain 1 bright white bag, 2 muted yellow bags.");
 
-    var graph = new BagRuleEvaluatorForContainingBags();
-    graph.addRule(rule);
+    var evaluator = new BagRuleEvaluatorForContainingBags();
+    evaluator.addRule(rule);
 
-    assertTrue(graph.getContainingBagColors("bright white").contains("light red"));
-    assertTrue(graph.getContainingBagColors("muted yellow").contains("light red"));
+    assertTrue(evaluator.getContainingBagColors("bright white").contains("light red"));
+    assertTrue(evaluator.getContainingBagColors("muted yellow").contains("light red"));
   }
 
   @Test
@@ -22,11 +22,11 @@ public class BagRuleEvaluatorForContainingBagsTest {
     var rule1 = new BagRuleParser("light red bags contain 1 bright white bag.");
     var rule2 = new BagRuleParser("muted yellow bags contain 1 bright white bag.");
 
-    var graph = new BagRuleEvaluatorForContainingBags();
-    graph.addRule(rule1);
-    graph.addRule(rule2);
+    var evaluator = new BagRuleEvaluatorForContainingBags();
+    evaluator.addRule(rule1);
+    evaluator.addRule(rule2);
 
-    var containingBagColors = graph.getContainingBagColors("bright white");
+    var containingBagColors = evaluator.getContainingBagColors("bright white");
     assertTrue(containingBagColors.contains("light red"));
     assertTrue(containingBagColors.contains("muted yellow"));
   }
@@ -41,16 +41,16 @@ public class BagRuleEvaluatorForContainingBagsTest {
     var rule6 = new BagRuleParser("dark olive bags contain 3 faded blue bags, 4 dotted black bags.");
     var rule7 = new BagRuleParser("vibrant plum bags contain 5 faded blue bags, 6 dotted black bags.");
 
-    var graph = new BagRuleEvaluatorForContainingBags();
-    graph.addRule(rule1);
-    graph.addRule(rule2);
-    graph.addRule(rule3);
-    graph.addRule(rule4);
-    graph.addRule(rule5);
-    graph.addRule(rule6);
-    graph.addRule(rule7);
+    var evaluator = new BagRuleEvaluatorForContainingBags();
+    evaluator.addRule(rule1);
+    evaluator.addRule(rule2);
+    evaluator.addRule(rule3);
+    evaluator.addRule(rule4);
+    evaluator.addRule(rule5);
+    evaluator.addRule(rule6);
+    evaluator.addRule(rule7);
 
-    var containingBagColors = graph.getRecursivelyContainingBagColors("shiny gold");
+    var containingBagColors = evaluator.getRecursivelyContainingBagColors("shiny gold");
     assertTrue(containingBagColors.contains("light red"));
     assertTrue(containingBagColors.contains("bright white"));
     assertTrue(containingBagColors.contains("muted yellow"));
