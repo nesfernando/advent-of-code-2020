@@ -1,8 +1,6 @@
 package adventofcode.day7;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.Map;
 
 public class BagRuleEvaluatorForAllBagContents {
@@ -23,6 +21,7 @@ public class BagRuleEvaluatorForAllBagContents {
 
       var node = new GraphNode(color, count);
 
+      node.setCount(count);
       container.addNeighbor(node);
       nodes.put(color, node);
     }
@@ -32,29 +31,20 @@ public class BagRuleEvaluatorForAllBagContents {
     return nodes.getOrDefault(color, new GraphNode(color));
   }
 
-  // FIXME: this isn't a BFS problem, it's a composite recursive traversal (DFS?)
   public int getTotalRecursiveBagCount(String bagColor) {
-    var totalCount = 0;
-    var visitedNodes = new HashSet<GraphNode>();
-    var queue = new LinkedList<GraphNode>();
     var node = getNode(bagColor);
 
-    visitedNodes.add(node);
-    queue.add(node);
-
-    while (!queue.isEmpty()) {
-      var current = queue.poll();
-
-      for (var neighbor : current.getNeighbors()) {
-        totalCount += neighbor.getCount();
-        if (!visitedNodes.contains(neighbor)) {
-          visitedNodes.add(neighbor);
-          queue.add(neighbor);
-        }
-      }
-    }
-
-    return totalCount;
+    return getCount(node) - 1; // don't count myself
   }
 
+  private static int getCount(GraphNode node) {
+    int count = 0;
+
+    for (var neighbor : node.getNeighbors()) {
+      count += getCount(neighbor);
+    }
+
+    int totalCount = node.getCount() * count + node.getCount();
+    return totalCount;
+  }
 }

@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class GraphNode {
   private String color;
-  private int count;
+  private int count = 1; // the count of instances "my" container has of "me"
   private Set<GraphNode> neighbors = new HashSet<GraphNode>();
 
   public GraphNode(String color) {
@@ -31,5 +31,9 @@ public class GraphNode {
 
   public Set<GraphNode> getNeighbors() {
     return this.neighbors;
+  }
+
+  public void setCount(int count) {
+    this.count = count;
   }
 }
