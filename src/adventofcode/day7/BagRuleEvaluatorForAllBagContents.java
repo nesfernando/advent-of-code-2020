@@ -34,18 +34,17 @@ public class BagRuleEvaluatorForAllBagContents {
   public int getTotalRecursiveBagCount(String bagColor) {
     var node = getNode(bagColor);
 
-    node.setCount(1); // override the rule for counting
-    return getCount(node) - 1; // don't count myself
+    return getCount(node, 1) - 1; // don't count myself
   }
 
-  private static int getCount(GraphNode node) {
+  private static int getCount(GraphNode node, int countOfThisBag) {
     int count = 0;
 
     for (var neighbor : node.getNeighbors()) {
-      count += getCount(neighbor);
+      count += getCount(neighbor, neighbor.getCount());
     }
 
-    int totalCount = node.getCount() * count + node.getCount();
+    int totalCount = countOfThisBag * count + countOfThisBag;
     return totalCount;
   }
 }
