@@ -5,11 +5,16 @@ import java.util.Set;
 
 public class GraphNode {
   private String color;
-  private Set<GraphNode> neighbors;
+  private int count;
+  private Set<GraphNode> neighbors = new HashSet<GraphNode>();
 
   public GraphNode(String color) {
     this.color = color;
-    this.neighbors = new HashSet<GraphNode>();
+  }
+
+  public GraphNode(String color, int count) {
+    this.color = color;
+    this.count = count;
   }
 
   @Override
@@ -20,6 +25,10 @@ public class GraphNode {
 
   public String getColor() {
     return this.color;
+  }
+
+  public int getCount() {
+    return this.count;
   }
 
   public void addNeighbor(GraphNode node) {

@@ -21,13 +21,15 @@ public class BagRuleParser {
     return this.contents;
   }
 
+  // FIXME: duplication with parse+FromContent
   // "2 muted yellow"
-  public static String parseColorFromContent(String content) {
-    return parseFromContent(content)[1];
+  public static int parseCountFromContent(String content) {
+    return Integer.parseInt(content.split(" ")[0]);
   }
 
-  private static String[] parseFromContent(String content) {
-    return content.split("\\d+ ");
+  // "2 muted yellow"
+  public static String parseColorFromContent(String content) {
+    return content.split("\\d+ ")[1];
   }
 
   // "light red bags contain 1 bright white bag, 2 muted yellow bags."
