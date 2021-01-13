@@ -6,8 +6,6 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
-import adventofcode.util.GraphNode;
-
 public class BagRuleGraph {
 
   private Map<String, GraphNode> nodes;

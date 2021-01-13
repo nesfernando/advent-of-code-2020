@@ -1,4 +1,4 @@
-package adventofcode.util;
+package adventofcode.day7;
 
 import java.util.HashSet;
 import java.util.Set;
