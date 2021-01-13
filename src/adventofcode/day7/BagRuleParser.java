@@ -21,6 +21,15 @@ public class BagRuleParser {
     return this.contents;
   }
 
+  // "2 muted yellow"
+  public static String parseColorFromContent(String content) {
+    return parseFromContent(content)[1];
+  }
+
+  private static String[] parseFromContent(String content) {
+    return content.split("\\d+ ");
+  }
+
   // "light red bags contain 1 bright white bag, 2 muted yellow bags."
   private void parse(String rule) {
     var containTerms = rule.split(" contain ");

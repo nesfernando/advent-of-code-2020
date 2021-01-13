@@ -19,7 +19,7 @@ public class BagRuleEvaluatorForContainingBags {
     nodes.put(rule.getColor(), containedBy);
 
     for (var content : rule.getContents()) {
-      var color = parseColorFromContent(content);
+      var color = BagRuleParser.parseColorFromContent(content);
 
       var node = getNode(color);
 
@@ -63,10 +63,5 @@ public class BagRuleEvaluatorForContainingBags {
 
   private GraphNode getNode(String color) {
     return nodes.getOrDefault(color, new GraphNode(color));
-  }
-
-  // "2 muted yellow"
-  private static String parseColorFromContent(String content) {
-    return content.split("\\d+ ")[1];
   }
 }
