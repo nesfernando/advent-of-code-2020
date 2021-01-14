@@ -21,7 +21,6 @@ public class BagRuleEvaluatorForAllBagContents {
 
       var node = new GraphNode(color, count);
 
-      node.setCount(count);
       container.addNeighbor(node);
       nodes.put(color, node);
     }
