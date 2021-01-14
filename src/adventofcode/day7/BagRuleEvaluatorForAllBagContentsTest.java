@@ -29,6 +29,17 @@ class BagRuleEvaluatorForAllBagContentsTest {
   }
 
   @Test
+  void threeRules() {
+    var evaluator = new BagRuleEvaluatorForAllBagContents();
+    evaluator.addRule(new BagRuleParser("blue bags contain 2 green bags."));
+    evaluator.addRule(new BagRuleParser("yellow bags contain 3 green bags."));
+    evaluator.addRule(new BagRuleParser("green bags contain 1 red bag."));
+
+    assertEquals(6, evaluator.getTotalRecursiveBagCount("yellow"));
+    assertEquals(4, evaluator.getTotalRecursiveBagCount("blue"));
+  }
+
+  @Test
   void baseExampleFromPart1() {
     var rule1 = new BagRuleParser("light red bags contain 1 bright white bag, 2 muted yellow bags.");
     var rule2 = new BagRuleParser("dark orange bags contain 3 bright white bags, 4 muted yellow bags.");

@@ -22,7 +22,6 @@ public class BagRuleEvaluatorForAllBagContents {
       var node = new GraphNode(color, count);
 
       container.addNeighbor(node);
-      nodes.put(color, node);
     }
   }
 
@@ -36,11 +35,11 @@ public class BagRuleEvaluatorForAllBagContents {
     return getCount(node, 1) - 1; // don't count myself
   }
 
-  private static int getCount(GraphNode node, int countOfThisBag) {
+  private int getCount(GraphNode node, int countOfThisBag) {
     int count = 0;
 
     for (var neighbor : node.getNeighbors()) {
-      count += getCount(neighbor, neighbor.getCount());
+      count += getCount(getNode(neighbor.getColor()), neighbor.getCount());
     }
 
     return countOfThisBag * count + countOfThisBag;
