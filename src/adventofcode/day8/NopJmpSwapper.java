@@ -7,7 +7,8 @@ public class NopJmpSwapper {
 
   private List<String> program;
 
-  private int instructionPointer = 0;
+  // prevent infinite loops to begin with; requirements do this, too
+  private int instructionPointer = 1;
 
   public NopJmpSwapper(List<String> program) {
     this.program = program;
