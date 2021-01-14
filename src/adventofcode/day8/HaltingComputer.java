@@ -42,6 +42,11 @@ public class HaltingComputer {
     return this.accumulator;
   }
 
+  public boolean hasSuccessfullyTerminated() {
+    // should use == but guarding against being out of sync with other methods
+    return this.instructionPointer >= this.program.size();
+  }
+
   public boolean willLoopAtCurrentInstruction() {
     return this.executedInstructions.contains(this.instructionPointer);
   }

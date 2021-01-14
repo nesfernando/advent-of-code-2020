@@ -22,4 +22,19 @@ class HaltingComputerTest {
     assertEquals(5, computer.getAccumulator());
   }
 
+  @Test
+  void executeProgramSuccessfully() {
+    var instructions = Arrays.asList(
+        "nop +0", "acc +1", "jmp +4", "acc +3", "jmp -3", "acc -99", "acc +1", "nop -4", "acc +6");
+
+    var computer = new HaltingComputer(instructions);
+
+    do {
+      computer.executeCurrentInstruction();
+    }
+    while (!computer.hasSuccessfullyTerminated());
+
+    assertEquals(8, computer.getAccumulator());
+  }
+
 }
