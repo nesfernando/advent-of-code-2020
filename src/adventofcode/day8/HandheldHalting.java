@@ -16,5 +16,9 @@ public class HandheldHalting {
     }
 
     System.out.println("Accumulator value before looping: " + computer.getAccumulator());
+
+    var fixer = new BootCodeFixer(lines);
+
+    System.out.println("Accumulator value after fixing program: " + fixer.getAccumulatorAtProgramEnd());
   }
 }
