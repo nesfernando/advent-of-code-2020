@@ -35,7 +35,7 @@ public class NopJmpSwapper {
     return programCopy;
   }
 
-  // starts
+  // starts at where we last left off
   private int getNextSwapIndex() {
     for (int i = instructionPointer; i < program.size(); i++) {
       var instruction = new Instruction(program.get(i));
