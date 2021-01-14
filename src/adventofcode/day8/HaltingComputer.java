@@ -13,39 +13,24 @@ public class HaltingComputer {
   // we can also use an Instruction object here
   private Set<Integer> executedInstructions = new HashSet<Integer>();
 
-  private static class Instruction {
-
-    public static final String NOP = "nop";
-    public static final String ACC = "acc";
-    public static final String JMP = "jmp";
-
-    public String opCode;
-    public int argument;
-
-    public Instruction(String opCode, int argument) {
-      this.opCode = opCode;
-      this.argument = argument;
-    }
-  }
-
   public HaltingComputer(List<String> program) {
     this.program = program;
   }
 
   public void executeCurrentInstruction() {
-    var currentInstruction = getCurrentInstruction();
+    var currentInstruction = new Instruction(this.program.get(instructionPointer));
 
-    switch (currentInstruction.opCode) {
+    switch (currentInstruction.getOpCode()) {
 
     case Instruction.NOP:
       break;
 
     case Instruction.ACC:
-      this.accumulator += currentInstruction.argument;
+      this.accumulator += currentInstruction.getArgument();
       break;
 
     case Instruction.JMP:
-      this.instructionPointer += currentInstruction.argument - 1;
+      this.instructionPointer += currentInstruction.getArgument() - 1;
       break;
     }
 
@@ -59,13 +44,6 @@ public class HaltingComputer {
 
   public boolean willLoopAtCurrentInstruction() {
     return this.executedInstructions.contains(this.instructionPointer);
-  }
-
-  private Instruction getCurrentInstruction() {
-
-    // FIXME: this should be moved to Instruction
-    var parsed = this.program.get(instructionPointer).split(" ");
-    return new Instruction(parsed[0], Integer.parseInt(parsed[1]));
   }
 
 }
