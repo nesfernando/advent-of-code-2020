@@ -10,9 +10,9 @@ class NopJmpSwapperTest {
 
   @Test
   void swapNopAtIndexOneJmpAtIndexTwo() {
-    var instructions = Arrays.asList("acc +1", "nop +1", "jmp -4");
+    var program = Arrays.asList("acc +1", "nop +1", "jmp -4");
 
-    var swapper = new NopJmpSwapper(instructions);
+    var swapper = new NopJmpSwapper(program);
 
     assertEquals(Arrays.asList("acc +1", "jmp +1", "jmp -4"), swapper.nextSwappedProgram());
     assertEquals(Arrays.asList("acc +1", "nop +1", "nop -4"), swapper.nextSwappedProgram());
@@ -20,9 +20,9 @@ class NopJmpSwapperTest {
 
   @Test
   void twoSwapsThenThrow() {
-    var instructions = Arrays.asList("acc +1", "nop +1", "jmp -4");
+    var program = Arrays.asList("acc +1", "nop +1", "jmp -4");
 
-    var swapper = new NopJmpSwapper(instructions);
+    var swapper = new NopJmpSwapper(program);
 
     swapper.nextSwappedProgram();
     swapper.nextSwappedProgram();
@@ -34,9 +34,9 @@ class NopJmpSwapperTest {
 
   @Test
   void twoSwapsThenHasNextIsFalse() {
-    var instructions = Arrays.asList("acc +1", "nop +1", "jmp -4");
+    var program = Arrays.asList("acc +1", "nop +1", "jmp -4");
 
-    var swapper = new NopJmpSwapper(instructions);
+    var swapper = new NopJmpSwapper(program);
 
     swapper.nextSwappedProgram();
     swapper.nextSwappedProgram();
