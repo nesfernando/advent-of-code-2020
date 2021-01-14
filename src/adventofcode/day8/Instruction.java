@@ -13,6 +13,11 @@ public class Instruction {
     parse(instructionStr);
   }
 
+  @Override
+  public String toString() {
+    return getOpCode() + " " + String.format("+%d", getArgument());
+  }
+
   public String getOpCode() {
     return this.opCode;
   }
