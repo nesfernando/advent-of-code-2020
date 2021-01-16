@@ -10,8 +10,8 @@ public class SlidingWindow {
 
   private List<Long> numbers;
 
-  public SlidingWindow(List<Long> numbers, int preamble) {
-    this.highEdge = preamble;
+  public SlidingWindow(List<Long> numbers, int width) {
+    this.highEdge = width;
     this.numbers = numbers;
   }
 

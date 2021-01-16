@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class SlidingWindowTest {
 
   @Test
-  void fiveNumbersThreePreambleTwoSlides() {
+  void fiveNumbersThreeWidthTwoSlides() {
     var numbers = List.of(95L, 102L, 117L, 150L, 182L);
     
     var window = new SlidingWindow(numbers, 3);
