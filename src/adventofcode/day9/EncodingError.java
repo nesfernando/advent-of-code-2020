@@ -12,6 +12,9 @@ public class EncodingError {
 
     List<Long> numbers = lines.stream().map(Long::parseLong).collect(Collectors.toList());
 
-    System.out.println("First without complement: " + Solution.findFirstWithoutComplement(numbers, 25));
+    long target = Solution.findFirstWithoutComplement(numbers, 25);
+    System.out.println("First without complement: " + target);
+
+    System.out.println("Sum of min / max of range that sum to target: " + Solution.partTwo(numbers, target));
   }
 }
