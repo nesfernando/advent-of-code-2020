@@ -15,20 +15,20 @@ public class SlidingWindow {
     this.numbers = numbers;
   }
 
-  public List<Long> getWindow() {
+  public List<Long> getRange() {
     return new ArrayList<Long>(numbers.subList(lowEdge, highEdge));
   }
 
-  public boolean hasNextAfterWindowEdge() {
+  public boolean canSlide() {
     return highEdge < numbers.size();
+  }
+
+  public void slide() {
+    lowEdge++;
+    highEdge++;
   }
 
   public long getNextAfterWindowEdge() {
     return numbers.get(highEdge);
-  }
-  
-  public void slide() {
-    lowEdge++;
-    highEdge++;
   }
 }
