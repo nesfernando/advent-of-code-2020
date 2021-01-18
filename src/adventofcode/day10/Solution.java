@@ -2,9 +2,13 @@ package adventofcode.day10;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Solution {
+
+  private static Map<List<Integer>, Long> memo = new HashMap<List<Integer>, Long>();
 
   public static int productOfOneJoltAndThreeJoltDistributions(List<Integer> joltages) {
     var sortedJoltages = sortAndPrepWithWallAndDevice(joltages);
@@ -14,16 +18,20 @@ public class Solution {
     return joltageDelta.get(1) * joltageDelta.get(3);
   }
 
-  public static int countDistinctAdapterArrangements(List<Integer> joltages) {
+  public static long countDistinctAdapterArrangements(List<Integer> joltages) {
     var sortedJoltages = sortAndPrepWithWallAndDevice(joltages);
 
     return countDistinctAdapterArrangementsImpl(sortedJoltages) + 1;
   }
 
-  private static int countDistinctAdapterArrangementsImpl(List<Integer> joltages) {
+  private static long countDistinctAdapterArrangementsImpl(List<Integer> joltages) {
     // base case
     if (joltages.size() < 3) {
       return 0;
+    }
+
+    if (memo.containsKey(joltages)) {
+      return memo.get(joltages);
     }
 
     var first = joltages.get(0);
@@ -31,13 +39,17 @@ public class Solution {
 
     // can't remove the middle, so recurse the remainder
     if (third - first > 3) {
-      return countDistinctAdapterArrangementsImpl(suffixWithMiddleAdapter(joltages));
+      var count = countDistinctAdapterArrangementsImpl(suffixWithMiddleAdapter(joltages));
+      memo.put(joltages, count);
+      return count;
     }
 
     // else, the middle adapter can be removed, we count this arrangement, and we
     // recurse the remainder with and without it
-    return 1 + countDistinctAdapterArrangementsImpl(suffixWithMiddleAdapter(joltages))
+    var count = 1 + countDistinctAdapterArrangementsImpl(suffixWithMiddleAdapter(joltages))
         + countDistinctAdapterArrangementsImpl(suffixWithoutMiddleAdapter(joltages));
+    memo.put(joltages, count);
+    return count;
   }
 
   private static List<Integer> suffixWithMiddleAdapter(List<Integer> joltages) {
