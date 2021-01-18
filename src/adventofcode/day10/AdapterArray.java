@@ -15,5 +15,9 @@ public class AdapterArray {
     System.out.println(
         "What is the number of 1-jolt differences multiplied by the number of 3-jolt differences? "
             + Solution.productOfOneJoltAndThreeJoltDistributions(numbers));
+
+    System.out.println(
+        "What is the total number of distinct ways you can arrange the adapters to connect "
+            + "the charging outlet to your device? " + Solution.countDistinctAdapterArrangements(numbers));
   }
 }
