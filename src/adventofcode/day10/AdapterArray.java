@@ -14,6 +14,6 @@ public class AdapterArray {
 
     System.out.println(
         "What is the number of 1-jolt differences multiplied by the number of 3-jolt differences? "
-            + Solution.partOne(numbers));
+            + Solution.productOfOneJoltAndThreeJoltDistributions(numbers));
   }
 }

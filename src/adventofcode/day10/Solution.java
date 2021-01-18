@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Solution {
 
-  public static int partOne(List<Integer> joltages) {
+  public static int productOfOneJoltAndThreeJoltDistributions(List<Integer> joltages) {
     var sortedJoltages = new ArrayList<>(joltages);
 
     var max = Collections.max(sortedJoltages);
