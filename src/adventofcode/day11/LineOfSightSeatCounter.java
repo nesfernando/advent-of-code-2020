@@ -2,6 +2,16 @@ package adventofcode.day11;
 
 public class LineOfSightSeatCounter implements OccupiedSeatCounter {
 
+  private class Direction {
+    public int drow;
+    public int dcol;
+
+    public Direction(int drow, int dcol) {
+      this.drow = drow;
+      this.dcol = dcol;
+    }
+  }
+
   private Direction[] directions = { new Direction(-1, -1), new Direction(-1, 0), new Direction(-1, 1),
       new Direction(0, -1), new Direction(0, 1), new Direction(1, -1), new Direction(1, 0), new Direction(1, 1) };
 
@@ -41,15 +51,5 @@ public class LineOfSightSeatCounter implements OccupiedSeatCounter {
     var numCols = matrix[0].length;
 
     return (row >= 0 && row < numRows) && (col >= 0 && col < numCols);
-  }
-
-  private class Direction {
-    public int drow;
-    public int dcol;
-
-    public Direction(int drow, int dcol) {
-      this.drow = drow;
-      this.dcol = dcol;
-    }
   }
 }
