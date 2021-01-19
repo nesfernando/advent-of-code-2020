@@ -7,13 +7,19 @@ public class SeatLayout {
   private char[][] matrix;
   private char[][] workingCopyMatrix;
 
+  private int occupiedSeatThreshold;
   private OccupiedSeatCounter occupiedSeatCounter;
 
-  public SeatLayout(char[][] matrix, OccupiedSeatCounter occupiedSeatCounter) {
+  public SeatLayout(char[][] matrix, OccupiedSeatCounter occupiedSeatCounter, int occupiedSeatThreshold) {
     this.matrix = matrix;
     this.workingCopyMatrix = new char[matrix.length][matrix[0].length];
 
     this.occupiedSeatCounter = occupiedSeatCounter;
+    this.occupiedSeatThreshold = occupiedSeatThreshold;
+  }
+
+  public SeatLayout(char[][] matrix, OccupiedSeatCounter occupiedSeatCounter) {
+    this(matrix, new AdjacentSeatCounter(), 4);
   }
 
   public SeatLayout(char[][] matrix) {
@@ -84,7 +90,7 @@ public class SeatLayout {
   private boolean applyOccupiedSeatRule(int row, int col) {
     var count = occupiedSeatCounter.count(matrix, row, col);
 
-    if (count >= 4) {
+    if (count >= occupiedSeatThreshold) {
       workingCopyMatrix[row][col] = SeatLegend.EMPTY;
       return true;
     }
