@@ -7,12 +7,17 @@ public class SeatLayout {
   private char[][] matrix;
   private char[][] workingCopyMatrix;
 
-  private final static char OCCUPIED = '#';
-  private final static char EMPTY = 'L';
+  private OccupiedSeatCounter occupiedSeatCounter;
 
-  public SeatLayout(char[][] matrix) {
+  public SeatLayout(char[][] matrix, OccupiedSeatCounter occupiedSeatCounter) {
     this.matrix = matrix;
     this.workingCopyMatrix = new char[matrix.length][matrix[0].length];
+
+    this.occupiedSeatCounter = occupiedSeatCounter;
+  }
+
+  public SeatLayout(char[][] matrix) {
+    this(matrix, new AdjacentSeatCounter());
   }
 
   public int occupiedSeatsCount() {
@@ -21,7 +26,7 @@ public class SeatLayout {
     int count = 0;
     for (int row = 0; row < numRows; row++) {
       for (int col = 0; col < numCols; col++) {
-        if (matrix[row][col] == OCCUPIED) {
+        if (matrix[row][col] == SeatLegend.OCCUPIED) {
           count++;
         }
       }
@@ -65,10 +70,10 @@ public class SeatLayout {
 
   // returns true if empty seat becomes occupied
   private boolean applyEmptySeatRule(int row, int col) {
-    var allAdjacentSeatsAreEmpty = countOccupiedAdjacent(row, col) == 0;
+    var allAdjacentSeatsAreEmpty = occupiedSeatCounter.count(matrix, row, col) == 0;
 
     if (allAdjacentSeatsAreEmpty) {
-      workingCopyMatrix[row][col] = OCCUPIED;
+      workingCopyMatrix[row][col] = SeatLegend.OCCUPIED;
       return true;
     }
 
@@ -77,47 +82,21 @@ public class SeatLayout {
 
   // returns true if occupied seat becomes empty
   private boolean applyOccupiedSeatRule(int row, int col) {
-    var count = countOccupiedAdjacent(row, col);
+    var count = occupiedSeatCounter.count(matrix, row, col);
 
     if (count >= 4) {
-      workingCopyMatrix[row][col] = EMPTY;
+      workingCopyMatrix[row][col] = SeatLegend.EMPTY;
       return true;
     }
 
     return false;
   }
 
-  private int countOccupiedAdjacent(int row, int col) {
-
-    int count = 0;
-    for (int i = row - 1; i <= row + 1; i++) {
-      if (i < 0 || i >= matrix.length) {
-        continue;
-      }
-
-      for (int j = col - 1; j <= col + 1; j++) {
-        if (j < 0 || j >= matrix[0].length) {
-          continue;
-        }
-
-        if (i == row && j == col) {
-          continue;
-        }
-
-        if (matrix[i][j] == OCCUPIED) {
-          count++;
-        }
-      }
-    }
-
-    return count;
-  }
-
   private boolean isEmpty(int row, int col) {
-    return matrix[row][col] == EMPTY;
+    return matrix[row][col] == SeatLegend.EMPTY;
   }
 
   private boolean isOccupied(int row, int col) {
-    return matrix[row][col] == OCCUPIED;
+    return matrix[row][col] == SeatLegend.OCCUPIED;
   }
 }
