@@ -2,6 +2,7 @@ package adventofcode.day11;
 
 public class AdjacentSeatCounter implements OccupiedSeatCounter {
 
+  @Override
   public int count(char[][] matrix, int row, int col) {
     int count = 0;
     for (int i = row - 1; i <= row + 1; i++) {

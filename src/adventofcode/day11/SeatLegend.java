@@ -4,5 +4,5 @@ public class SeatLegend {
 
   public static final char OCCUPIED = '#';
   public static final char EMPTY = 'L';
-
+  public static final char FLOOR = '.';
 }
