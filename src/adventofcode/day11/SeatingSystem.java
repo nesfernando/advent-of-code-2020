@@ -12,5 +12,7 @@ public class SeatingSystem {
     System.out.println(
         "After applying rules repeatedly until no seats change, how many seats end up occupied? "
             + Solution.partOne(lines));
+
+    System.out.println("With line-of-sight occupied seat counting and increased threshold: " + Solution.partTwo(lines));
   }
 }
