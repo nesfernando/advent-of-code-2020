@@ -52,10 +52,10 @@ public class SeatLayout {
 
     for (int row = 0; row < numRows; row++) {
       for (int col = 0; col < numCols; col++) {
-        if (isEmpty(row, col)) {
+        if (matrix[row][col] == SeatLegend.EMPTY) {
           seatHasChanged = applyEmptySeatRule(row, col) || seatHasChanged;
         }
-        else if (isOccupied(row, col)) {
+        else if (matrix[row][col] == SeatLegend.OCCUPIED) {
           seatHasChanged = applyOccupiedSeatRule(row, col) || seatHasChanged;
         }
       }
@@ -96,13 +96,5 @@ public class SeatLayout {
     }
 
     return false;
-  }
-
-  private boolean isEmpty(int row, int col) {
-    return matrix[row][col] == SeatLegend.EMPTY;
-  }
-
-  private boolean isOccupied(int row, int col) {
-    return matrix[row][col] == SeatLegend.OCCUPIED;
   }
 }
