@@ -116,6 +116,22 @@ public class Waypoint {
     longitudinalMagnitude = Math.abs(delta);
   }
 
+  public void moveWest(int value) {
+    var delta = getLongitudinalValue() - value;
+
+    var isQuadrantShift = getLongitudinalValue() > 0 && delta < 0;
+    if (isQuadrantShift) {
+      if (inAlphaQuadrant()) {
+        rotateQuadrantLeft();
+      }
+      else if (inBetaQuadrant()) {
+        rotateQuadrantRight();
+      }
+    }
+
+    longitudinalMagnitude = Math.abs(delta);
+  }
+
   private boolean inAlphaQuadrant() {
     return deque.getFirst().equals(Quadrant.ALPHA);
   }

@@ -124,4 +124,23 @@ class WaypointTest {
     assertEquals(10, waypoint.getLongitudinalValue());
     assertEquals(-1, waypoint.getLatitudinalValue());
   }
+
+  @Test
+  void moveWestFromAlphaToDelta() {
+    var waypoint = new Waypoint();
+
+    waypoint.moveWest(20);
+    assertEquals(-10, waypoint.getLongitudinalValue());
+    assertEquals(1, waypoint.getLatitudinalValue());
+  }
+
+  @Test
+  void moveWestFromBetaToGamma() {
+    var waypoint = new Waypoint();
+    waypoint.rotateRight(90);
+
+    waypoint.moveWest(20);
+    assertEquals(-19, waypoint.getLongitudinalValue());
+    assertEquals(-10, waypoint.getLatitudinalValue());
+  }
 }
