@@ -67,6 +67,44 @@ class WaypointTest {
   }
 
   @Test
+  void moveNorthNoQuadrantChange() {
+    var waypoint = new Waypoint();
+
+    waypoint.moveNorth(20);
+    assertEquals(10, waypoint.getLongitudinalValue());
+    assertEquals(21, waypoint.getLatitudinalValue());
+  }
+
+  @Test
+  void moveSouthNoQuadrantChange() {
+    var waypoint = new Waypoint();
+    waypoint.rotateRight(90);
+
+    waypoint.moveSouth(20);
+    assertEquals(1, waypoint.getLongitudinalValue());
+    assertEquals(-30, waypoint.getLatitudinalValue());
+  }
+
+  @Test
+  void moveEastNoQuadrantChange() {
+    var waypoint = new Waypoint();
+
+    waypoint.moveEast(20);
+    assertEquals(30, waypoint.getLongitudinalValue());
+    assertEquals(1, waypoint.getLatitudinalValue());
+  }
+
+  @Test
+  void moveWestNoQuadrantChange() {
+    var waypoint = new Waypoint();
+    waypoint.rotateLeft(90);
+
+    waypoint.moveWest(20);
+    assertEquals(-21, waypoint.getLongitudinalValue());
+    assertEquals(10, waypoint.getLatitudinalValue());
+  }
+
+  @Test
   void moveNorthFromBetaToAlpha() {
     var waypoint = new Waypoint();
     waypoint.rotateRight(90);
