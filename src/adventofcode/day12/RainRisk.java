@@ -12,5 +12,7 @@ public class RainRisk {
     System.out.println(
         "What is the Manhattan distance between that location and the ship's starting position? "
             + Solution.partOne(lines));
+
+    System.out.println("Same as above, using waypoint: " + Solution.partTwo(lines));
   }
 }

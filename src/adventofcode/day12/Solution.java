@@ -14,4 +14,13 @@ public class Solution {
     return navigator.getManhattanDistance();
   }
 
+  public static int partTwo(List<String> lines) {
+    var navigator = new NavigatorWaypoint();
+
+    for (String command : lines) {
+      navigator.navigate(command);
+    }
+
+    return navigator.getManhattanDistance();
+  }
 }
