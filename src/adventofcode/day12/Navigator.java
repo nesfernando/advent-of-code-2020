@@ -4,44 +4,32 @@ public class Navigator {
 
   private Helm helm = new Helm();
 
-  private static final String FORWARD = "F";
-  private static final String RIGHT = "R";
-  private static final String LEFT = "L";
-  private static final String NORTH = "N";
-  private static final String EAST = "E";
-  private static final String SOUTH = "S";
-  private static final String WEST = "W";
-
   private int latitudinalPosition = 0;
   private int longitudinalPosition = 0;
-
-  public Navigator() {
-
-  }
 
   public void navigate(String command) {
     var action = command.substring(0, 1);
     var value = Integer.parseInt(command.substring(1));
 
-    if (action.equals(FORWARD)) {
+    if (action.equals(NavigatorActions.FORWARD)) {
       doForward(value);
     }
-    else if (action.equals(RIGHT)) {
+    else if (action.equals(NavigatorActions.RIGHT)) {
       helm.steerRight(value);
     }
-    else if (action.equals(LEFT)) {
+    else if (action.equals(NavigatorActions.LEFT)) {
       helm.steerLeft(value);
     }
-    else if (action.equals(NORTH)) {
+    else if (action.equals(NavigatorActions.NORTH)) {
       goNorth(value);
     }
-    else if (action.equals(SOUTH)) {
+    else if (action.equals(NavigatorActions.SOUTH)) {
       goSouth(value);
     }
-    else if (action.equals(EAST)) {
+    else if (action.equals(NavigatorActions.EAST)) {
       goEast(value);
     }
-    else if (action.equals(WEST)) {
+    else if (action.equals(NavigatorActions.WEST)) {
       goWest(value);
     }
   }
