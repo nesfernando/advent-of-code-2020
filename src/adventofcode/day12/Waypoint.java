@@ -26,10 +26,10 @@ public class Waypoint {
     this.longitudinalMagnitude = 10;
     this.latitudinalMagnitude = 1;
 
-    this.deque.add(Quadrant.ALPHA);
-    this.deque.add(Quadrant.BETA);
-    this.deque.add(Quadrant.GAMMA);
-    this.deque.add(Quadrant.DELTA);
+    this.deque.addLast(Quadrant.ALPHA);
+    this.deque.addLast(Quadrant.BETA);
+    this.deque.addLast(Quadrant.GAMMA);
+    this.deque.addLast(Quadrant.DELTA);
   }
 
   public void rotateRight(int degrees) {
@@ -71,6 +71,8 @@ public class Waypoint {
   public void moveNorth(int value) {
     var delta = getLatitudinalValue() + value;
 
+    assert (delta != 0);
+
     var isQuadrantShift = getLatitudinalValue() < 0 && delta >= 0;
     if (isQuadrantShift) {
       if (inBetaQuadrant()) {
@@ -86,6 +88,8 @@ public class Waypoint {
 
   public void moveSouth(int value) {
     var delta = getLatitudinalValue() - value;
+
+    assert (delta != 0);
 
     var isQuadrantShift = getLatitudinalValue() > 0 && delta < 0;
     if (isQuadrantShift) {
@@ -103,6 +107,8 @@ public class Waypoint {
   public void moveEast(int value) {
     var delta = getLongitudinalValue() + value;
 
+    assert (delta != 0);
+
     var isQuadrantShift = getLongitudinalValue() < 0 && delta >= 0;
     if (isQuadrantShift) {
       if (inDeltaQuadrant()) {
@@ -118,6 +124,8 @@ public class Waypoint {
 
   public void moveWest(int value) {
     var delta = getLongitudinalValue() - value;
+
+    assert (delta != 0);
 
     var isQuadrantShift = getLongitudinalValue() > 0 && delta < 0;
     if (isQuadrantShift) {
