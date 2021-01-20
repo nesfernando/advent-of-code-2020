@@ -50,17 +50,17 @@ public class Waypoint {
     var directionShift = degrees / 90;
 
     for (int i = 0; i < directionShift; i++) {
-      rotateQudrantLeft();
+      rotateQuadrantLeft();
       swapMagnitudes();
     }
   }
 
-  private void rotateQudrantLeft() {
+  private void rotateQuadrantLeft() {
     var direction = deque.removeLast();
     deque.addFirst(direction);
   }
 
-  public int getLongtitudinalValue() {
+  public int getLongitudinalValue() {
     return deque.getFirst().xSign * longitudinalMagnitude;
   }
 
@@ -74,7 +74,7 @@ public class Waypoint {
     var isQuadrantShift = getLatitudinalValue() < 0 && delta >= 0;
     if (isQuadrantShift) {
       if (inBetaQuadrant()) {
-        rotateQudrantLeft();
+        rotateQuadrantLeft();
       }
       else if (inGammaQuadrant()) {
         rotateQuadrantRight();
@@ -90,7 +90,7 @@ public class Waypoint {
     var isQuadrantShift = getLatitudinalValue() > 0 && delta < 0;
     if (isQuadrantShift) {
       if (inDeltaQuadrant()) {
-        rotateQudrantLeft();
+        rotateQuadrantLeft();
       }
       else if (inAlphaQuadrant()) {
         rotateQuadrantRight();
@@ -98,6 +98,22 @@ public class Waypoint {
     }
 
     latitudinalMagnitude = Math.abs(delta);
+  }
+
+  public void moveEast(int value) {
+    var delta = getLongitudinalValue() + value;
+
+    var isQuadrantShift = getLongitudinalValue() < 0 && delta >= 0;
+    if (isQuadrantShift) {
+      if (inDeltaQuadrant()) {
+        rotateQuadrantRight();
+      }
+      else if (inGammaQuadrant()) {
+        rotateQuadrantLeft();
+      }
+    }
+
+    longitudinalMagnitude = Math.abs(delta);
   }
 
   private boolean inAlphaQuadrant() {

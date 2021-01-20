@@ -11,19 +11,19 @@ class WaypointTest {
     var waypoint = new Waypoint();
 
     waypoint.rotateRight(90);
-    assertEquals(1, waypoint.getLongtitudinalValue());
+    assertEquals(1, waypoint.getLongitudinalValue());
     assertEquals(-10, waypoint.getLatitudinalValue());
 
     waypoint.rotateRight(90);
-    assertEquals(-10, waypoint.getLongtitudinalValue());
+    assertEquals(-10, waypoint.getLongitudinalValue());
     assertEquals(-1, waypoint.getLatitudinalValue());
 
     waypoint.rotateRight(90);
-    assertEquals(-1, waypoint.getLongtitudinalValue());
+    assertEquals(-1, waypoint.getLongitudinalValue());
     assertEquals(10, waypoint.getLatitudinalValue());
 
     waypoint.rotateRight(90);
-    assertEquals(10, waypoint.getLongtitudinalValue());
+    assertEquals(10, waypoint.getLongitudinalValue());
     assertEquals(1, waypoint.getLatitudinalValue());
   }
 
@@ -32,19 +32,19 @@ class WaypointTest {
     var waypoint = new Waypoint();
 
     waypoint.rotateLeft(90);
-    assertEquals(-1, waypoint.getLongtitudinalValue());
+    assertEquals(-1, waypoint.getLongitudinalValue());
     assertEquals(10, waypoint.getLatitudinalValue());
 
     waypoint.rotateLeft(90);
-    assertEquals(-10, waypoint.getLongtitudinalValue());
+    assertEquals(-10, waypoint.getLongitudinalValue());
     assertEquals(-1, waypoint.getLatitudinalValue());
 
     waypoint.rotateLeft(90);
-    assertEquals(1, waypoint.getLongtitudinalValue());
+    assertEquals(1, waypoint.getLongitudinalValue());
     assertEquals(-10, waypoint.getLatitudinalValue());
 
     waypoint.rotateLeft(90);
-    assertEquals(10, waypoint.getLongtitudinalValue());
+    assertEquals(10, waypoint.getLongitudinalValue());
     assertEquals(1, waypoint.getLatitudinalValue());
   }
 
@@ -53,7 +53,7 @@ class WaypointTest {
     var waypoint = new Waypoint();
 
     waypoint.rotateRight(180);
-    assertEquals(-10, waypoint.getLongtitudinalValue());
+    assertEquals(-10, waypoint.getLongitudinalValue());
     assertEquals(-1, waypoint.getLatitudinalValue());
   }
 
@@ -62,7 +62,7 @@ class WaypointTest {
     var waypoint = new Waypoint();
 
     waypoint.rotateLeft(180);
-    assertEquals(-10, waypoint.getLongtitudinalValue());
+    assertEquals(-10, waypoint.getLongitudinalValue());
     assertEquals(-1, waypoint.getLatitudinalValue());
   }
 
@@ -72,7 +72,7 @@ class WaypointTest {
     waypoint.rotateRight(90);
 
     waypoint.moveNorth(20);
-    assertEquals(1, waypoint.getLongtitudinalValue());
+    assertEquals(1, waypoint.getLongitudinalValue());
     assertEquals(10, waypoint.getLatitudinalValue());
   }
 
@@ -82,7 +82,7 @@ class WaypointTest {
     waypoint.rotateRight(180);
 
     waypoint.moveNorth(20);
-    assertEquals(-10, waypoint.getLongtitudinalValue());
+    assertEquals(-10, waypoint.getLongitudinalValue());
     assertEquals(19, waypoint.getLatitudinalValue());
   }
 
@@ -92,7 +92,7 @@ class WaypointTest {
     waypoint.rotateLeft(90);
 
     waypoint.moveSouth(20);
-    assertEquals(-1, waypoint.getLongtitudinalValue());
+    assertEquals(-1, waypoint.getLongitudinalValue());
     assertEquals(-10, waypoint.getLatitudinalValue());
   }
 
@@ -101,7 +101,27 @@ class WaypointTest {
     var waypoint = new Waypoint();
 
     waypoint.moveSouth(20);
-    assertEquals(10, waypoint.getLongtitudinalValue());
+    assertEquals(10, waypoint.getLongitudinalValue());
     assertEquals(-19, waypoint.getLatitudinalValue());
+  }
+
+  @Test
+  void moveEastFromDeltaToAlpha() {
+    var waypoint = new Waypoint();
+    waypoint.rotateLeft(90);
+
+    waypoint.moveEast(20);
+    assertEquals(19, waypoint.getLongitudinalValue());
+    assertEquals(10, waypoint.getLatitudinalValue());
+  }
+
+  @Test
+  void moveEastFromGammaToBeta() {
+    var waypoint = new Waypoint();
+    waypoint.rotateLeft(180);
+
+    waypoint.moveEast(20);
+    assertEquals(10, waypoint.getLongitudinalValue());
+    assertEquals(-1, waypoint.getLatitudinalValue());
   }
 }
