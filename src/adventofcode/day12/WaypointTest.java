@@ -4,64 +4,64 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class WaypointHelmTest {
+class WaypointTest {
 
   @Test
   void turnRight90Degrees() {
-    var waypointHelm = new WaypointHelm();
+    var waypointHelm = new Waypoint();
 
-    waypointHelm.steerRight(90);
+    waypointHelm.rotateRight(90);
     assertEquals(1, waypointHelm.getLongtitudinalValue());
     assertEquals(-10, waypointHelm.getLatitudinalValue());
 
-    waypointHelm.steerRight(90);
+    waypointHelm.rotateRight(90);
     assertEquals(-10, waypointHelm.getLongtitudinalValue());
     assertEquals(-1, waypointHelm.getLatitudinalValue());
 
-    waypointHelm.steerRight(90);
+    waypointHelm.rotateRight(90);
     assertEquals(-1, waypointHelm.getLongtitudinalValue());
     assertEquals(10, waypointHelm.getLatitudinalValue());
 
-    waypointHelm.steerRight(90);
+    waypointHelm.rotateRight(90);
     assertEquals(10, waypointHelm.getLongtitudinalValue());
     assertEquals(1, waypointHelm.getLatitudinalValue());
   }
 
   @Test
   void turnLeft90Degrees() {
-    var waypointHelm = new WaypointHelm();
+    var waypointHelm = new Waypoint();
 
-    waypointHelm.steerLeft(90);
+    waypointHelm.rotateLeft(90);
     assertEquals(-1, waypointHelm.getLongtitudinalValue());
     assertEquals(10, waypointHelm.getLatitudinalValue());
 
-    waypointHelm.steerLeft(90);
+    waypointHelm.rotateLeft(90);
     assertEquals(-10, waypointHelm.getLongtitudinalValue());
     assertEquals(-1, waypointHelm.getLatitudinalValue());
 
-    waypointHelm.steerLeft(90);
+    waypointHelm.rotateLeft(90);
     assertEquals(1, waypointHelm.getLongtitudinalValue());
     assertEquals(-10, waypointHelm.getLatitudinalValue());
 
-    waypointHelm.steerLeft(90);
+    waypointHelm.rotateLeft(90);
     assertEquals(10, waypointHelm.getLongtitudinalValue());
     assertEquals(1, waypointHelm.getLatitudinalValue());
   }
 
   @Test
   void turnRight180Degrees() {
-    var waypointHelm = new WaypointHelm();
+    var waypointHelm = new Waypoint();
 
-    waypointHelm.steerRight(180);
+    waypointHelm.rotateRight(180);
     assertEquals(-10, waypointHelm.getLongtitudinalValue());
     assertEquals(-1, waypointHelm.getLatitudinalValue());
   }
 
   @Test
   void turnLeft180Degrees() {
-    var waypointHelm = new WaypointHelm();
+    var waypointHelm = new Waypoint();
 
-    waypointHelm.steerLeft(180);
+    waypointHelm.rotateLeft(180);
     assertEquals(-10, waypointHelm.getLongtitudinalValue());
     assertEquals(-1, waypointHelm.getLatitudinalValue());
   }

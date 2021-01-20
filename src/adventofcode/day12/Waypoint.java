@@ -3,7 +3,7 @@ package adventofcode.day12;
 import java.util.Deque;
 import java.util.LinkedList;
 
-public class WaypointHelm {
+public class Waypoint {
 
   private enum Quadrant {
     ALPHA(1, 1), BETA(1, -1), GAMMA(-1, -1), DELTA(-1, 1);
@@ -22,7 +22,7 @@ public class WaypointHelm {
   private int longitudinalMagnitude = 0;
   private int latitudinalMagnitude = 0;
 
-  public WaypointHelm() {
+  public Waypoint() {
     this.longitudinalMagnitude = 10;
     this.latitudinalMagnitude = 1;
 
@@ -32,7 +32,7 @@ public class WaypointHelm {
     this.deque.add(Quadrant.DELTA);
   }
 
-  public void steerRight(int degrees) {
+  public void rotateRight(int degrees) {
     var directionShift = degrees / 90;
 
     for (int i = 0; i < directionShift; i++) {
@@ -42,7 +42,7 @@ public class WaypointHelm {
     }
   }
 
-  public void steerLeft(int degrees) {
+  public void rotateLeft(int degrees) {
     var directionShift = degrees / 90;
 
     for (int i = 0; i < directionShift; i++) {
