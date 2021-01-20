@@ -36,20 +36,28 @@ public class Waypoint {
     var directionShift = degrees / 90;
 
     for (int i = 0; i < directionShift; i++) {
-      var direction = deque.removeFirst();
-      deque.addLast(direction);
+      rotateQuadrantRight();
       swapMagnitudes();
     }
+  }
+
+  private void rotateQuadrantRight() {
+    var direction = deque.removeFirst();
+    deque.addLast(direction);
   }
 
   public void rotateLeft(int degrees) {
     var directionShift = degrees / 90;
 
     for (int i = 0; i < directionShift; i++) {
-      var direction = deque.removeLast();
-      deque.addFirst(direction);
+      rotateQudrantLeft();
       swapMagnitudes();
     }
+  }
+
+  private void rotateQudrantLeft() {
+    var direction = deque.removeLast();
+    deque.addFirst(direction);
   }
 
   public int getLongtitudinalValue() {
@@ -58,6 +66,54 @@ public class Waypoint {
 
   public int getLatitudinalValue() {
     return deque.getFirst().ySign * latitudinalMagnitude;
+  }
+
+  public void moveNorth(int value) {
+    var delta = getLatitudinalValue() + value;
+
+    var isQuadrantShift = getLatitudinalValue() < 0 && delta >= 0;
+    if (isQuadrantShift) {
+      if (inBetaQuadrant()) {
+        rotateQudrantLeft();
+      }
+      else if (inGammaQuadrant()) {
+        rotateQuadrantRight();
+      }
+    }
+
+    latitudinalMagnitude = Math.abs(delta);
+  }
+
+  public void moveSouth(int value) {
+    var delta = getLatitudinalValue() - value;
+
+    var isQuadrantShift = getLatitudinalValue() > 0 && delta < 0;
+    if (isQuadrantShift) {
+      if (inDeltaQuadrant()) {
+        rotateQudrantLeft();
+      }
+      else if (inAlphaQuadrant()) {
+        rotateQuadrantRight();
+      }
+    }
+
+    latitudinalMagnitude = Math.abs(delta);
+  }
+
+  private boolean inAlphaQuadrant() {
+    return deque.getFirst().equals(Quadrant.ALPHA);
+  }
+
+  private boolean inBetaQuadrant() {
+    return deque.getFirst().equals(Quadrant.BETA);
+  }
+
+  private boolean inGammaQuadrant() {
+    return deque.getFirst().equals(Quadrant.GAMMA);
+  }
+
+  private boolean inDeltaQuadrant() {
+    return deque.getFirst().equals(Quadrant.DELTA);
   }
 
   private void swapMagnitudes() {
