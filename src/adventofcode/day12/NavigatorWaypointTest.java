@@ -11,10 +11,24 @@ class NavigatorWaypointTest {
     var navigator = new NavigatorWaypoint();
 
     navigator.navigate("F10");
+    assertEquals(100, navigator.getLongitudinalPosition());
+    assertEquals(10, navigator.getLatitudinalPosition());
+
     navigator.navigate("N3");
+    assertEquals(100, navigator.getLongitudinalPosition());
+    assertEquals(10, navigator.getLatitudinalPosition());
+
     navigator.navigate("F7");
+    assertEquals(170, navigator.getLongitudinalPosition());
+    assertEquals(38, navigator.getLatitudinalPosition());
+
     navigator.navigate("R90");
+    assertEquals(170, navigator.getLongitudinalPosition());
+    assertEquals(38, navigator.getLatitudinalPosition());
+
     navigator.navigate("F11");
+    assertEquals(214, navigator.getLongitudinalPosition());
+    assertEquals(-72, navigator.getLatitudinalPosition());
 
     assertEquals(286, navigator.getManhattanDistance());
   }
