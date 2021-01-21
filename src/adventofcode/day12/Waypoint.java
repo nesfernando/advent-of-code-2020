@@ -17,19 +17,19 @@ public class Waypoint {
     }
   }
 
-  private Deque<Quadrant> deque = new LinkedList<Quadrant>();
+  Deque<Quadrant> quadrants = new LinkedList<Quadrant>();
 
-  private int longitudinalMagnitude = 0;
-  private int latitudinalMagnitude = 0;
+  private int longitudinalValue;
+  private int latitudinalValue;
 
   public Waypoint() {
-    this.longitudinalMagnitude = 10;
-    this.latitudinalMagnitude = 1;
+    longitudinalValue = 10;
+    latitudinalValue = 1;
 
-    this.deque.addLast(Quadrant.ALPHA);
-    this.deque.addLast(Quadrant.BETA);
-    this.deque.addLast(Quadrant.GAMMA);
-    this.deque.addLast(Quadrant.DELTA);
+    quadrants.addLast(Quadrant.ALPHA);
+    quadrants.addLast(Quadrant.BETA);
+    quadrants.addLast(Quadrant.GAMMA);
+    quadrants.addLast(Quadrant.DELTA);
   }
 
   public void rotateRight(int degrees) {
@@ -39,11 +39,8 @@ public class Waypoint {
       rotateQuadrantRight();
       swapMagnitudes();
     }
-  }
 
-  private void rotateQuadrantRight() {
-    var direction = deque.removeFirst();
-    deque.addLast(direction);
+    orientPositions();
   }
 
   public void rotateLeft(int degrees) {
@@ -53,112 +50,76 @@ public class Waypoint {
       rotateQuadrantLeft();
       swapMagnitudes();
     }
+
+    orientPositions();
+  }
+
+  private void rotateQuadrantRight() {
+    var direction = quadrants.removeFirst();
+    quadrants.addLast(direction);
   }
 
   private void rotateQuadrantLeft() {
-    var direction = deque.removeLast();
-    deque.addFirst(direction);
-  }
-
-  public int getLongitudinalValue() {
-    return deque.getFirst().xSign * longitudinalMagnitude;
-  }
-
-  public int getLatitudinalValue() {
-    return deque.getFirst().ySign * latitudinalMagnitude;
-  }
-
-  public void moveNorth(int value) {
-    var delta = getLatitudinalValue() + value;
-
-    assert (delta != 0);
-
-    var isQuadrantShift = getLatitudinalValue() < 0 && delta >= 0;
-    if (isQuadrantShift) {
-      if (inBetaQuadrant()) {
-        rotateQuadrantLeft();
-      }
-      else if (inGammaQuadrant()) {
-        rotateQuadrantRight();
-      }
-    }
-
-    latitudinalMagnitude = Math.abs(delta);
-  }
-
-  public void moveSouth(int value) {
-    var delta = getLatitudinalValue() - value;
-
-    assert (delta != 0);
-
-    var isQuadrantShift = getLatitudinalValue() > 0 && delta < 0;
-    if (isQuadrantShift) {
-      if (inDeltaQuadrant()) {
-        rotateQuadrantLeft();
-      }
-      else if (inAlphaQuadrant()) {
-        rotateQuadrantRight();
-      }
-    }
-
-    latitudinalMagnitude = Math.abs(delta);
-  }
-
-  public void moveEast(int value) {
-    var delta = getLongitudinalValue() + value;
-
-    assert (delta != 0);
-
-    var isQuadrantShift = getLongitudinalValue() < 0 && delta >= 0;
-    if (isQuadrantShift) {
-      if (inDeltaQuadrant()) {
-        rotateQuadrantRight();
-      }
-      else if (inGammaQuadrant()) {
-        rotateQuadrantLeft();
-      }
-    }
-
-    longitudinalMagnitude = Math.abs(delta);
-  }
-
-  public void moveWest(int value) {
-    var delta = getLongitudinalValue() - value;
-
-    assert (delta != 0);
-
-    var isQuadrantShift = getLongitudinalValue() > 0 && delta < 0;
-    if (isQuadrantShift) {
-      if (inAlphaQuadrant()) {
-        rotateQuadrantLeft();
-      }
-      else if (inBetaQuadrant()) {
-        rotateQuadrantRight();
-      }
-    }
-
-    longitudinalMagnitude = Math.abs(delta);
-  }
-
-  private boolean inAlphaQuadrant() {
-    return deque.getFirst().equals(Quadrant.ALPHA);
-  }
-
-  private boolean inBetaQuadrant() {
-    return deque.getFirst().equals(Quadrant.BETA);
-  }
-
-  private boolean inGammaQuadrant() {
-    return deque.getFirst().equals(Quadrant.GAMMA);
-  }
-
-  private boolean inDeltaQuadrant() {
-    return deque.getFirst().equals(Quadrant.DELTA);
+    var direction = quadrants.removeLast();
+    quadrants.addFirst(direction);
   }
 
   private void swapMagnitudes() {
-    var temp = longitudinalMagnitude;
-    longitudinalMagnitude = latitudinalMagnitude;
-    latitudinalMagnitude = temp;
+    var temp = longitudinalValue;
+    longitudinalValue = latitudinalValue;
+    latitudinalValue = temp;
   }
+
+  private void orientPositions() {
+    var quadrant = quadrants.peekFirst();
+    longitudinalValue = Math.abs(longitudinalValue) * quadrant.xSign;
+    latitudinalValue = Math.abs(latitudinalValue) * quadrant.ySign;
+  }
+
+  private void orientQuadrant() {
+    var quadrant = Quadrant.DELTA;
+
+    if (longitudinalValue > 0 && latitudinalValue > 0) {
+      quadrant = Quadrant.ALPHA;
+    }
+    else if (longitudinalValue > 0 && latitudinalValue < 0) {
+      quadrant = Quadrant.BETA;
+    }
+    else if (longitudinalValue < 0 && latitudinalValue < 0) {
+      quadrant = Quadrant.GAMMA;
+    }
+
+    while (!quadrants.peekFirst().equals(quadrant)) {
+      rotateQuadrantRight();
+    }
+  }
+
+  public void moveNorth(int value) {
+    latitudinalValue += value;
+    orientQuadrant();
+  }
+
+  public void moveSouth(int value) {
+    latitudinalValue -= value;
+    orientQuadrant();
+  }
+
+  public void moveEast(int value) {
+    longitudinalValue += value;
+    orientQuadrant();
+  }
+
+  public void moveWest(int value) {
+    longitudinalValue -= value;
+    orientQuadrant();
+  }
+
+  public int getLongitudinalValue() {
+    return longitudinalValue;
+  }
+
+  public int getLatitudinalValue() {
+    return latitudinalValue;
+  }
+
 }
