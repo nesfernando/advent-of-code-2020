@@ -34,6 +34,51 @@ class NavigatorWaypointTest {
   }
 
   @Test
+  void moveSouth() {
+    var navigator = new NavigatorWaypoint();
+
+    navigator.navigate("S20");
+    navigator.navigate("F1");
+
+    assertEquals(10, navigator.getLongitudinalPosition());
+    assertEquals(-19, navigator.getLatitudinalPosition());
+  }
+
+  @Test
+  void moveEast() {
+    var navigator = new NavigatorWaypoint();
+
+    navigator.navigate("E20");
+    navigator.navigate("F1");
+
+    assertEquals(30, navigator.getLongitudinalPosition());
+    assertEquals(1, navigator.getLatitudinalPosition());
+  }
+
+  @Test
+  void moveWest() {
+    var navigator = new NavigatorWaypoint();
+
+    navigator.navigate("W20");
+    navigator.navigate("F1");
+
+    assertEquals(-10, navigator.getLongitudinalPosition());
+    assertEquals(1, navigator.getLatitudinalPosition());
+  }
+
+  @Test
+  void moveSouthThenWest() {
+    var navigator = new NavigatorWaypoint();
+
+    navigator.navigate("S20");
+    navigator.navigate("W20");
+    navigator.navigate("F1");
+
+    assertEquals(-10, navigator.getLongitudinalPosition());
+    assertEquals(-19, navigator.getLatitudinalPosition());
+  }
+
+  @Test
   void moveForwardDefault() {
     var navigator = new NavigatorWaypoint();
 
