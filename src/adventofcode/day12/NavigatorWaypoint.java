@@ -36,6 +36,14 @@ public class NavigatorWaypoint {
     }
   }
 
+  public int getLongitudinalPosition() {
+    return longitudinalPosition;
+  }
+
+  public int getLatitudinalPosition() {
+    return latitudinalPosition;
+  }
+
   public int getManhattanDistance() {
     return Math.abs(longitudinalPosition) + Math.abs(latitudinalPosition);
   }
