@@ -38,9 +38,7 @@ public class NavigatorWaypoint {
   }
 
   private void doForward(int value) {
-    for (int i = 0; i < value; i++) {
-      longitudinalPosition += waypoint.getLongitudinalValue();
-      latitudinalPosition += waypoint.getLatitudinalValue();
-    }
+    longitudinalPosition += waypoint.getLongitudinalValue() * value;
+    latitudinalPosition += waypoint.getLatitudinalValue() * value;
   }
 }
