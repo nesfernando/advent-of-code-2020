@@ -67,6 +67,24 @@ class WaypointTest {
   }
 
   @Test
+  void turnRight270Degrees() {
+    var waypoint = new Waypoint();
+
+    waypoint.rotateRight(270);
+    assertEquals(-1, waypoint.getLongitudinalValue());
+    assertEquals(10, waypoint.getLatitudinalValue());
+  }
+
+  @Test
+  void turnLeft270Degrees() {
+    var waypoint = new Waypoint();
+
+    waypoint.rotateLeft(270);
+    assertEquals(1, waypoint.getLongitudinalValue());
+    assertEquals(-10, waypoint.getLatitudinalValue());
+  }
+
+  @Test
   void moveNorthNoQuadrantChange() {
     var waypoint = new Waypoint();
 
