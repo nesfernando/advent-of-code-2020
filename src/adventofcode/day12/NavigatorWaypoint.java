@@ -31,6 +31,9 @@ public class NavigatorWaypoint {
     else if (action.equals(NavigatorActions.WEST)) {
       waypoint.moveWest(value);
     }
+    else {
+      throw new IllegalArgumentException("Unknown action: " + action);
+    }
   }
 
   public int getManhattanDistance() {

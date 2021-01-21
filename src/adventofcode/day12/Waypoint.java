@@ -77,6 +77,9 @@ public class Waypoint {
   }
 
   private void orientQuadrant() {
+
+    assert (longitudinalValue != 0 && latitudinalValue != 0);
+
     var quadrant = Quadrant.DELTA;
 
     if (longitudinalValue > 0 && latitudinalValue > 0) {
