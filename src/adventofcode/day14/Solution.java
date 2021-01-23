@@ -6,7 +6,7 @@ public class Solution {
 
   public static long partOne(List<String> lines) {
 
-    var decoder = new Decoder();
+    var decoder = new ValueMaskingDecoder();
 
     for (String line : lines) {
       var executor = InstructionParser.parse(line);

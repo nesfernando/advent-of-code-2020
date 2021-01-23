@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class DecoderTest {
+class ValueMaskingDecoderTest {
 
   @Test
   void singleEntry() {
     var mask = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X";
-    var decoder = new Decoder();
+    var decoder = new ValueMaskingDecoder();
     decoder.setMask(mask);
 
     decoder.setValue(8L, 11L);
@@ -21,7 +21,7 @@ class DecoderTest {
   @Test
   void twoEntries() {
     var mask = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X";
-    var decoder = new Decoder();
+    var decoder = new ValueMaskingDecoder();
     decoder.setMask(mask);
 
     decoder.setValue(8L, 11L);
@@ -34,7 +34,7 @@ class DecoderTest {
   @Test
   void threeEntries() {
     var mask = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X";
-    var decoder = new Decoder();
+    var decoder = new ValueMaskingDecoder();
     decoder.setMask(mask);
 
     decoder.setValue(8L, 11L);

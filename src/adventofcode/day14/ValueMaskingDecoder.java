@@ -5,19 +5,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Decoder {
+public class ValueMaskingDecoder implements Decoder {
 
   private String mask = "";
   private Map<Long, Long> memory = new HashMap<Long, Long>();
 
-  public Decoder() {
+  public ValueMaskingDecoder() {
 
   }
 
+  @Override
   public void setMask(String mask) {
     this.mask = mask;
   }
 
+  @Override
   public void setValue(long address, long value) {
     var binaryString = ValueConverter.decimalToBinaryString(value);
 
@@ -26,6 +28,7 @@ public class Decoder {
     memory.put(address, ValueConverter.binaryStringToDecimal(maskedValue));
   }
 
+  @Override
   public List<Long> getValues() {
     return new ArrayList<>(memory.values());
   }
