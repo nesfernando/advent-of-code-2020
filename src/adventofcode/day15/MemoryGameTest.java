@@ -90,4 +90,52 @@ class MemoryGameTest {
     assertEquals(1836, lastSpoken);
   }
 
+  @Test
+  void baseExample2a() {
+    var lastSpoken = getSpokenNumberAtTurn(List.of(0, 3, 6), 30000000);
+
+    assertEquals(175594, lastSpoken);
+  }
+
+  @Test
+  void baseExample2b() {
+    var lastSpoken = getSpokenNumberAtTurn(List.of(1, 3, 2), 30000000);
+
+    assertEquals(2578, lastSpoken);
+  }
+
+  @Test
+  void baseExample2c() {
+    var lastSpoken = getSpokenNumberAtTurn(List.of(2, 1, 3), 30000000);
+
+    assertEquals(3544142, lastSpoken);
+  }
+
+  @Test
+  void baseExample2d() {
+    var lastSpoken = getSpokenNumberAtTurn(List.of(1, 2, 3), 30000000);
+
+    assertEquals(261214, lastSpoken);
+  }
+
+  @Test
+  void baseExample2e() {
+    var lastSpoken = getSpokenNumberAtTurn(List.of(2, 3, 1), 30000000);
+
+    assertEquals(6895259, lastSpoken);
+  }
+
+  @Test
+  void baseExample2f() {
+    var lastSpoken = getSpokenNumberAtTurn(List.of(3, 2, 1), 30000000);
+
+    assertEquals(18, lastSpoken);
+  }
+
+  @Test
+  void baseExample2g() {
+    var lastSpoken = getSpokenNumberAtTurn(List.of(3, 1, 2), 30000000);
+
+    assertEquals(362, lastSpoken);
+  }
 }
