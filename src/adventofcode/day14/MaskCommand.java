@@ -1,10 +1,10 @@
 package adventofcode.day14;
 
-public class MaskCommandExecutor implements DecoderCommandExecutor {
+public class MaskCommand implements DecoderCommand {
 
   private String mask;
 
-  public MaskCommandExecutor(String mask) {
+  public MaskCommand(String mask) {
     this.mask = mask;
   }
 

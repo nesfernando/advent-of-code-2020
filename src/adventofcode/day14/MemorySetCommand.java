@@ -1,11 +1,11 @@
 package adventofcode.day14;
 
-public class MemorySetCommandExecutor implements DecoderCommandExecutor {
+public class MemorySetCommand implements DecoderCommand {
 
   private long address;
   private long value;
 
-  public MemorySetCommandExecutor(long address, long value) {
+  public MemorySetCommand(long address, long value) {
     this.address = address;
     this.value = value;
   }
