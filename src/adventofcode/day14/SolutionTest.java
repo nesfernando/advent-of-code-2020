@@ -6,14 +6,14 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-class ProgramRunnerTest {
+class SolutionTest {
 
   @Test
   void baseExample1() {
     var instructions = List.of(
         "mask = XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X", "mem[8] = 11", "mem[7] = 101", "mem[8] = 0");
 
-    assertEquals(165, ProgramRunner.sumOfValues(instructions));
+    assertEquals(165, Solution.partOne(instructions));
   }
 
 }

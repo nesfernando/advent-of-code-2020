@@ -10,6 +10,6 @@ public class DockingData {
     List<String> lines = Files.readAllLines(Paths.get(args[0]));
 
     System.out.println(
-        "What is the sum of all values left in memory after it completes? " + ProgramRunner.sumOfValues(lines));
+        "What is the sum of all values left in memory after it completes? " + Solution.partOne(lines));
   }
 }

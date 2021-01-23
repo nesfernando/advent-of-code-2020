@@ -2,9 +2,9 @@ package adventofcode.day14;
 
 import java.util.List;
 
-public class ProgramRunner {
+public class Solution {
 
-  public static long sumOfValues(List<String> lines) {
+  public static long partOne(List<String> lines) {
 
     var decoder = new Decoder();
 
