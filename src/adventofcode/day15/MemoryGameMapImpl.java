@@ -33,17 +33,17 @@ public class MemoryGameMapImpl implements MemoryGame {
       speakNumber(numberSpokenForThisTurn);
     }
 
-    lastNumberSpoken = numberSpokenForThisTurn;
     return numberSpokenForThisTurn;
   }
 
   private boolean firstTimeLastNumberWasSpoken() {
-    return numberFrequency.get(lastNumberSpoken) == 1;
+    return numberFrequency.getOrDefault(lastNumberSpoken, 0) == 1;
   }
 
   private void speakNumber(int number) {
     bumpFrequency(number);
     memoizeLastTurns(number);
+    lastNumberSpoken = number;
     turnNumber++;
   }
 

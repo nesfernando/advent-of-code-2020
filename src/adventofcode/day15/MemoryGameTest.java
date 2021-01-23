@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 class MemoryGameTest {
 
   private static MemoryGame getInstance(List<Integer> startingNumbers) {
-     return new MemoryGameListImpl(startingNumbers);
-    // return new MemoryGameMapImpl(startingNumbers);
+    // return new MemoryGameListImpl(startingNumbers);
+    return new MemoryGameMapImpl(startingNumbers);
   }
 
   private static int getSpokenNumberAtTurn(List<Integer> startingNumbers, int turns) {
