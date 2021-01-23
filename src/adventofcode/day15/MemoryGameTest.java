@@ -34,6 +34,13 @@ class MemoryGameTest {
   }
 
   @Test
+  void partTwo() {
+    var lastSpoken = getSpokenNumberAtTurn(List.of(6, 4, 12, 1, 20, 0, 16), 30000000);
+
+    assertEquals(11261, lastSpoken);
+  }
+
+  @Test
   void baseExample1() {
     var startingNumbers = List.of(0, 3, 6);
 
