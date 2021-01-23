@@ -14,8 +14,8 @@ public class Solution {
 
   private static long executeUsingDecoder(List<String> lines, Decoder decoder) {
     for (String line : lines) {
-      var executor = InstructionParser.parse(line);
-      executor.execute(decoder);
+      var command = InstructionParser.parse(line);
+      command.execute(decoder);
     }
 
     return decoder.getValues().stream().mapToLong(Long::valueOf).sum();
