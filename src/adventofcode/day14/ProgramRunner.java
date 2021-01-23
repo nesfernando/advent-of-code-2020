@@ -6,13 +6,13 @@ public class ProgramRunner {
 
   public static long sumOfValues(List<String> lines) {
 
-    var computer = new Computer();
+    var decoder = new Decoder();
 
     for (String line : lines) {
       var executor = InstructionParser.parse(line);
-      executor.execute(computer);
+      executor.execute(decoder);
     }
 
-    return computer.getValues().stream().mapToLong(Long::valueOf).sum();
+    return decoder.getValues().stream().mapToLong(Long::valueOf).sum();
   }
 }

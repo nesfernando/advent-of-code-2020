@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class InstructionParser {
 
-  public static ComputerCommandExecutor parse(String instruction) {
+  public static DecoderCommandExecutor parse(String instruction) {
     if (instruction.startsWith("mask")) {
       return createMaskCommandExecutor(instruction);
     }
@@ -16,12 +16,12 @@ public class InstructionParser {
     }
   }
 
-  private static ComputerCommandExecutor createMaskCommandExecutor(String instruction) {
+  private static DecoderCommandExecutor createMaskCommandExecutor(String instruction) {
     var mask = instruction.split(" = ")[1];
     return new MaskCommandExecutor(mask);
   }
 
-  private static ComputerCommandExecutor createMemorySetCommandExecutor(String instruction) {
+  private static DecoderCommandExecutor createMemorySetCommandExecutor(String instruction) {
     // mem[40190] = 23031023
     var pattern = Pattern.compile("mem\\[(\\d+)\\] = (\\d+)");
     var matcher = pattern.matcher(instruction);

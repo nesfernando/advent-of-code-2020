@@ -5,12 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Computer {
+public class Decoder {
 
   private String mask = "";
   private Map<Long, Long> memory = new HashMap<Long, Long>();
 
-  public Computer() {
+  public Decoder() {
 
   }
 

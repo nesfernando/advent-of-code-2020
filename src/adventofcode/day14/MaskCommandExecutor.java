@@ -1,6 +1,6 @@
 package adventofcode.day14;
 
-public class MaskCommandExecutor implements ComputerCommandExecutor {
+public class MaskCommandExecutor implements DecoderCommandExecutor {
 
   private String mask;
 
@@ -9,7 +9,7 @@ public class MaskCommandExecutor implements ComputerCommandExecutor {
   }
 
   @Override
-  public void execute(Computer computer) {
-    computer.setMask(mask);
+  public void execute(Decoder decoder) {
+    decoder.setMask(mask);
   }
 }
