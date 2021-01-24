@@ -36,7 +36,7 @@ public class MemoryGameMapImpl implements MemoryGame {
   }
 
   private boolean firstTimeLastNumberWasSpoken() {
-    var lastTurns = turnNumbersWhenLastCalled.getOrDefault(lastNumberSpoken, new LastTurns());
+    var lastTurns = turnNumbersWhenLastCalled.get(lastNumberSpoken);
     return lastTurns.secondToLast == 0;
   }
 
