@@ -9,7 +9,6 @@ public class MemoryGameMapImpl implements MemoryGame {
   private int turnNumber = 1;
   private int lastNumberSpoken = 0;
 
-  private Map<Integer, Integer> numberFrequency = new HashMap<Integer, Integer>();
   private Map<Integer, LastTurns> turnNumbersWhenLastCalled = new HashMap<Integer, LastTurns>();
 
   public MemoryGameMapImpl(List<Integer> startingNumbers) {
@@ -37,19 +36,14 @@ public class MemoryGameMapImpl implements MemoryGame {
   }
 
   private boolean firstTimeLastNumberWasSpoken() {
-    return numberFrequency.getOrDefault(lastNumberSpoken, 0) == 1;
+    var lastTurns = turnNumbersWhenLastCalled.getOrDefault(lastNumberSpoken, new LastTurns());
+    return lastTurns.secondToLast == 0;
   }
 
   private void speakNumber(int number) {
-    bumpFrequency(number);
     memoizeLastTurns(number);
     lastNumberSpoken = number;
     turnNumber++;
-  }
-
-  private void bumpFrequency(int number) {
-    var bump = numberFrequency.getOrDefault(number, 0) + 1;
-    numberFrequency.put(number, bump);
   }
 
   private void memoizeLastTurns(int number) {
