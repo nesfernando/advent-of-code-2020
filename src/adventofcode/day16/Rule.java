@@ -6,12 +6,16 @@ import java.util.stream.Collectors;
 
 public class Rule {
 
-  private String fieldName;
+  private String ruleName;
   private List<ValueRange> ranges;
 
-  public Rule(String fieldName, List<ValueRange> valueRanges) {
-    this.fieldName = fieldName;
+  public Rule(String ruleName, List<ValueRange> valueRanges) {
+    this.ruleName = ruleName;
     this.ranges = valueRanges;
+  }
+
+  public String getRuleName() {
+    return ruleName;
   }
 
   public boolean valueIsWithinOneRange(int value) {
