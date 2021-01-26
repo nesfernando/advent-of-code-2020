@@ -19,37 +19,33 @@ public class Tokenizer {
   }
 
   public Token getNextToken() {
-    char c = moveToNextCharacter();
+    char c = getNextNonWhitespaceCharacter();
 
     if (c == OPENPAREN) {
-      index++;
       return new OpenParenToken();
     }
     else if (c == CLOSEPAREN) {
-      index++;
       return new CloseParenToken();
     }
     else if (c == ADDOP) {
-      index++;
       return new AddOpToken();
     }
     else if (c == MULTIOP) {
-      index++;
       return new MultiOpToken();
     }
     else if (Character.isDigit(c)) {
-      return new NumberToken(getNumberString());
+      return new NumberToken(getRemainingNumberString());
     }
 
     throw new IllegalStateException("Unable to parse next token at index: " + index);
 
   }
 
-  private String getNumberString() {
+  private String getRemainingNumberString() {
     var buffer = new StringBuffer();
     char c = ' ';
 
-    for (; index < line.length(); index++) {
+    for (index--; index < line.length(); index++) {
       c = line.charAt(index);
       if (!Character.isDigit(c)) {
         break;
@@ -60,7 +56,7 @@ public class Tokenizer {
     return buffer.toString();
   }
 
-  private char moveToNextCharacter() {
+  private char getNextNonWhitespaceCharacter() {
     char c = ' ';
 
     for (; index < line.length(); index++) {
@@ -70,6 +66,7 @@ public class Tokenizer {
       }
     }
 
+    index++;
     return c;
   }
 }

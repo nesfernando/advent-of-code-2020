@@ -7,6 +7,16 @@ import org.junit.jupiter.api.Test;
 class TokenizerTest {
 
   @Test
+  void one() {
+    var line = "1";
+
+    var tokenizer = new Tokenizer(line);
+
+    assertTrue(tokenizer.hasNext());
+    assertEquals("1", tokenizer.getNextToken().getValue());
+  }
+
+  @Test
   void whitespaceTest() {
     var line = "    1     2    3";
 
